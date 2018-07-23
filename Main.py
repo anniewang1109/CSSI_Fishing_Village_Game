@@ -1,4 +1,12 @@
+import webapp2
+import jinja2
+import os
 from google.appengine.ext import ndb
+
+jinja_current_directory = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
 
 class Fish(ndb.Model):
     strength = ndb.IntegerProperty()
@@ -16,10 +24,10 @@ class User(ndb.Model):
     level = ndb.IntegerProperty()
     #fishermanPlacement = ndb.KeyProperty(kind = Fisherman, repeated = true)
 
-addNewUser(self, username):
+def addNewUser(self, username):
     if(User.query(username == username).count == 0):
         new_User = User(username = username, level = 1)
-        new User.put()
+        new_User.put()
 
 
 
