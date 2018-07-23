@@ -24,8 +24,11 @@ body {
   background-size: cover;
   overflow: hidden;
   background-color: #3b5a5b;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 08ff9bceb0b107b62c6f571dbd09412bd38ee110
 }
 
 html {
@@ -34,6 +37,15 @@ html {
 
 #title{
   top: 33%;
+}
+
+button{
+  width: 8%;
+  margin-left: 46%;
+  margin-top: 30%;
+  background-color: #fff;
+  outline: none;
+  outline-color: #7C9C9A;
 }
 
 .bgimg {
