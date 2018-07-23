@@ -1,20 +1,11 @@
-
-function(){
 var canvas = document.getElementById("myCanvas")
 
-
 function full_canvas(){
-  // let width = screen.width
-  // let height = screen.height
+  let width = screen.availWidth
+  let height = screen.availHeight
 
-  canvas.style.width = 300;
-  canvas.style.height = 400;
-
-  console.log(canvas.style.width);
-  console.log(canvas.style.height);
+  canvas.style.width = width + "px";
+  canvas.style.height = height + "px";
 }
 
 full_canvas()
-
-canvas.addEventListener('click', full_canvas)
-}
