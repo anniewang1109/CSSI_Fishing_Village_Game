@@ -6,6 +6,7 @@ h1 {
 body {
   font-size: 50px;
   font-family: 'VT323', monospace;
+  text-shadow: 0px 0px 30px #a0b7b5; 
   background-image: url("imgs/StartPageImage.png");
   background-repeat: no-repeat;
   background-size: cover;
