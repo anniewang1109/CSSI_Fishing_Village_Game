@@ -1,3 +1,5 @@
+from google.appengine.ext import ndb
+
 class Fish(ndb.Model):
     strength = ndb.IntegerProperty()
     spriteLink = ndb.StringProperty()
