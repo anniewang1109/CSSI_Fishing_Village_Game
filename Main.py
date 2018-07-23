@@ -11,6 +11,9 @@ jinja_current_directory = jinja2.Environment(
 
 class mainHandler(webapp2.RequestHandler):
     def get(self):
+        template = jinja_current_directory.get_template('/templates/startPage.html')
+        self.response.write(template.render())
+    def post(self):
         user = users.get_current_user()
         nickname = None
         login_url = None
@@ -29,8 +32,7 @@ class mainHandler(webapp2.RequestHandler):
             "login_url": login_url,
         }
 
-        template = jinja_current_directory.get_template('/templates/startPage.html')
-        self.response.write(template.render())
+
     #def post(self):
         #Log in or make account
 
