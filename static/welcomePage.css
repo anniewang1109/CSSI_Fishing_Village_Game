@@ -4,6 +4,11 @@ h1 {
   font-family: 'VT323', monospace;
 }
 body {
-    background-image: "imgs/StartPageImage.css";
-
+  font-size: 50px;
+  font-family: 'VT323', monospace;
+  background-image: url("imgs/StartPageImage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-color: #3b5a5b
 }
