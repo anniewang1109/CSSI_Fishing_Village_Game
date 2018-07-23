@@ -5,8 +5,14 @@
 
 canvas{
   display: block;
-  margin: 0, auto;
-  background: blue;
-  border: 2px;
-  overflow: hidden;
+  margin:0;
+  background-color: papayawhip;
+  left: 0px;
+  top: 0px;
+  border: 100px;
+  border-color: black;
+  width: 100%;
+  height: 100%;
+  /* overflow: hidden; */
+  position: absolute;
 }
