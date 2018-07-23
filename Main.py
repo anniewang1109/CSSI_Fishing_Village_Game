@@ -14,6 +14,7 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_current_directory.get_template('/templates/welcomePage.html')
         self.response.write(template.render())
     def post(self):
+        console.log("test");
         user = users.get_current_user()
         nickname = None
         login_url = None
@@ -31,15 +32,20 @@ class MainHandler(webapp2.RequestHandler):
             "logout_url": logout_url,
             "login_url": login_url,
         }
-        template = jinja_current_directory.get_template('/templates/instructions.html')
+        template = jinja_current_directory.get_template('/templates/gamePage.html')
         self.response.write(template.render())
+        self.response.write("<p>" + tempate_vars['user'] + ", " + tempate_vars['login_url'] +  ", " + tempate_vars['logout_url'] + ", " + tempate_vars['nickname']+ "</p>")
 
     #def post(self):
         #Log in or make account
 class StartGameHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_directory.get_template('/templates/gamePage.html')
-        self.response.write(template.render())
+        pass
+        #template = jinja_current_directory.get_template('/templates/gamePage.html')
+        #self.response.write(template.render())
+    #def post(self):
+        #template = jinja_current_directory.get_template('/templates/gamePage.html')
+        #self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
