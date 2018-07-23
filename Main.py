@@ -9,7 +9,7 @@ jinja_current_directory = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class mainHandler(webapp2.RequestHandler):
+class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_directory.get_template('/templates/welcomePage.html')
         self.response.write(template.render())
@@ -31,12 +31,17 @@ class mainHandler(webapp2.RequestHandler):
             "logout_url": logout_url,
             "login_url": login_url,
         }
-        template = jinja_current_directory.get_template('/templates/gamePage.html')
+        template = jinja_current_directory.get_template('/templates/instructions.html')
         self.response.write(template.render())
 
     #def post(self):
         #Log in or make account
+class StartGameHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_current_directory.get_template('/templates/gamePage.html')
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
-    ('/', mainHandler),
+    ('/', MainHandler),
+    ('/game', StartGameHandler)
 ], debug=True)
