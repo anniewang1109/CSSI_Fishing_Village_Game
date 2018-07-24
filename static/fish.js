@@ -9,7 +9,17 @@ class Fish{
     this.strength = setLevel;
     this.currentFrame = -1;
     this.direction = 3;
-    setFishSpeed();
+    switch (this.strength) {
+      case 1:
+        this.speed = 5; //fix speed eventually
+        break;
+      case 2:
+        this.speed = 10; //fix speed eventually
+        break;
+      case 3:
+        this.speed = 20; //fix speed eventually
+        break;
+    }
   }
 
   moveFish(){
@@ -36,19 +46,19 @@ class Fish{
 
   //Returns src of image for sprite sheet and the frame
   getSSF(){
-    frame = (frame + 1) % 3;
+    this.currentFrame = (this.currentFrame + 1) % 3;
     //Depending on the track part it will return a differnt sprite.
     switch (this.level) {
       case 1:
-        return [getRed(), this.currentFrame];
+        return [this.getRed(), this.currentFrame];
       case 2:
-        return [getBlue(), this.currentFrame];
+        return [this.getBlue(), this.currentFrame];
       case 3:
-        return [getYellow(), this.currentFrame];
+        return [this.getYellow(), this.currentFrame];
     }
   }
 
-  getRed(){
+ getRed(){
     switch (this.direction) {
       case 0:
         return "/imgs/red_fish_right.png";
@@ -61,7 +71,7 @@ class Fish{
     }
   }
 
-  getBlue(){
+ getBlue(){
     switch (this.direction) {
       case 0:
         return "/imgs/blue_fish_right.png";
@@ -70,11 +80,11 @@ class Fish{
       case 2:
         return "/imgs/blue_fish_left.png";
       case 3:
-        return "/imgs/blue_fish_down.png";
+        return "/static/imgs/blue_fish_down.png";
     }
   }
 
-  getYellow(){
+ getYellow(){
     switch (this.direction) {
       case 0:
         return "/imgs/yellow_fish_right.png";

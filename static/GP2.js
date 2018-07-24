@@ -31,23 +31,22 @@ function clear_fish(x,y){
 // }
 
 let f = 0;
-function swim(key){
-  fish = fishArr[key];
+function swim(fish_key){
+  fish = fishArr[fish_key];
   SSF = fish.getSSF();
   // SSF[0] = src
   // SSF[1] = frame
   clear_fish(fish.xPos,fish.yPos);
   fish.moveFish();
-  draw_blue_fish(SSF[0],SSF[1],fish.xPos,fish.yPos);
+  draw_fish(SSF[0],SSF[1],fish.xPos,fish.yPos);
 }
 
-var firstTimer = setInterval(swim(firstTimer), 100);
-var firstFish = Fish(2);
-var secondTimer = setInterval(swim(secondTimer), 100);
-var secondFish = Fish(2);
-var fishArr = {firstTimer : firstFish, secondTimer : secondFish};
 
-
+var firstFish = new Fish(2);
+var secondFish = new Fish(2);
+var fishArr = {0 : firstFish, 1 : secondFish};
+var firstTimer = setInterval(swim(0), 100);
+var secondTimer = setInterval(swim(1), 100);
 //var fish = setInterval(swim, 100);
 //var stop = setInterval(stopAllTimes, 10000);
 
