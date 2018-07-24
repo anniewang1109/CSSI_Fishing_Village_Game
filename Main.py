@@ -20,28 +20,34 @@ class MainHandler(webapp2.RequestHandler):
             nickname = user.nickname()
             logout_url = users.create_logout_url('/')
         else:
-            login_url = users.create_login_url('/')
+            login_url = users.create_login_url('/game')
 
-        tempate_vars = {
+        template_vars = {
             "user": user,
             "nickname": nickname,
             "logout_url": logout_url,
             "login_url": login_url,
         }
-        template = jinja_current_directory.get_template('/templates/welcomePage.html')
-        self.response.write(template.render())
 
-    #def post(self):
-        #Log in or make account
+        template = jinja_current_directory.get_template('/templates/welcomePage.html')
+        self.response.write(template.render(template_vars))
+
 class StartGameHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_directory.get_template('/templates/gamePage.html')
-        self.response.write(template.render())
-    #def post(self):
-        #template = jinja_current_directory.get_template('/templates/gamePage.html')
-        #self.response.write(template.render())
+        user = users.get_current_user()
+
+        if user:
+            nickname = user.nickname()
+            template_vars = {
+                "nickname": nickname,
+            }
+            template = jinja_current_directory.get_template('/templates/gamePage.html')
+            self.response.write(template.render(template_vars))
+        else:
+            self.redirect('/')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/game', StartGameHandler)
+    ('/game', StartGameHandler),
+
 ], debug=True)
