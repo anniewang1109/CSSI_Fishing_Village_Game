@@ -47,7 +47,8 @@ a{
 
 #logInButton{
   width: 10%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #fff;
   outline: none;
   outline-color: #7C9C9A;
