@@ -7,7 +7,7 @@ handlers:
   static_dir: static
 #static directories should go ABOVE the catch all url (.*)
 - url: .*
-  script: Main.app
+  script: main.app
 
 
 libraries:
