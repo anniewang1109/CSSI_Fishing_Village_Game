@@ -6,7 +6,8 @@
 canvas{
   display: block;
   margin:0;
-  background-image: url("imgs/StartPageImage.png");  /*change this to the background image*/
+  background-color: brown;
+  background-image: url("imgs/StartPageImage.png");  /*change this to the background image*/ 
   background-repeat: no-repeat;
   background-size: cover;
   left: 0px;

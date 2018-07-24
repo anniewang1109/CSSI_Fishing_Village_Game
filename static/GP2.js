@@ -10,11 +10,11 @@ function full_canvas(){
   canvas.style.height = height + "px";
 }
 
-function draw_fish(src,frame,x,y){
+function draw_fish(src, frame,x,y){
   var img = new Image();
   img.src = src;
   img.onload = function() {
-    ctx.drawImage(img,f*32,0,32,32,x,y,32,32);
+    ctx.drawImage(img,frame*32,32,32,32, x,y,32,32);
   }
 }
 
@@ -22,20 +22,11 @@ function clear_fish(x,y){
   ctx.clearRect(x,y,32,32);
 }
 
-// let x = 50;
-// let y = 0;
-// function moveFish(){
-//   clear_fish(x,y);
-//   y += 10;
-//   draw_blue_fish(f,x,y);
-// }
-
 let f = 0;
 function swim(fish_key){
+  f = (f+1)%4;
   fish = fishArr[fish_key];
   SSF = fish.getSSF();
-  // SSF[0] = src
-  // SSF[1] = frame
   clear_fish(fish.xPos,fish.yPos);
   fish.moveFish();
   draw_fish(SSF[0],SSF[1],fish.xPos,fish.yPos);
@@ -44,16 +35,25 @@ function swim(fish_key){
 
 var firstFish = new Fish(2);
 var secondFish = new Fish(2);
+firstFish.xPos = 100;
+firstFish.yPos = 100;
+secondFish.xPos = 200;
+secondFish.yPos = 200;
+firstFish.nextX = 101;
+firstFish.nextY = 101;
+secondFish.nextX = 201;
+secondFish.nextY = 201;
 var fishArr = {0 : firstFish, 1 : secondFish};
-var firstTimer = setInterval(swim(0), 100);
-var secondTimer = setInterval(swim(1), 100);
+var firstTimer = setInterval(function(){swim(0);}, 100);
+var secondTimer = setInterval(function(){swim(1);}, 100);
 //var fish = setInterval(swim, 100);
-//var stop = setInterval(stopAllTimes, 10000);
+var stop = setInterval(stopAllTimes, 1000);
 
 full_canvas()
 //var myVar = setInterval(moveFish, 1000);
 
 
 function stopAllTimes(){
-  clearInterval(fish);
+  clearInterval(firstTimer);
+  clearInterval(secondTimer);
 }

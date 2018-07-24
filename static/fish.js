@@ -1,13 +1,13 @@
 class Fish{
 
   constructor(setLevel){
-    this.xPos = 50; //change to start x
-    this.yPos = 0; //change to start y
-    this.nextX = 51;
-    this.nextY = 0;
+    this.xPos = 100; //change to start x
+    this.yPos = 100; //change to start y
+    this.nextX = 200;
+    this.nextY = 200;
     this.level = setLevel;
     this.strength = setLevel;
-    this.currentFrame = -1;
+    this.currentFrame = 0;
     this.direction = 3;
     switch (this.strength) {
       case 1:
@@ -46,7 +46,7 @@ class Fish{
 
   //Returns src of image for sprite sheet and the frame
   getSSF(){
-    this.currentFrame = (this.currentFrame + 1) % 3;
+    this.currentFrame = (this.currentFrame + 1) % 4;
     //Depending on the track part it will return a differnt sprite.
     switch (this.level) {
       case 1:

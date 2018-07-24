@@ -13,7 +13,7 @@ var ctx = document.getElementById('canvas').getContext('2d');
 
 function draw_blue_fish(f,x,y){
   var img = new Image();
-  img.src = 'static/imgs/blue_fish_down.png';
+  img.src = 'static/imgs/blue_fish_left.png';
   img.onload = function() {
     ctx.drawImage(img,f*32,0,32,32,x,y,32,32);
   }
@@ -40,8 +40,14 @@ function swim(){
 }
 
 //var myVar = setInterval(moveFish, 1000);
-var fish = setInterval(swim, 100);
-var stop = setInterval(stopAllTimes, 10000);
+//var fish = setInterval(swim, 100);
+//var stop = setInterval(stopAllTimes, 10000);
+
+var img = new Image();
+img.src = 'static/imgs/blue_fish_left.png';
+img.onload = function() {
+  ctx.drawImage(img,f*32,32,32,32,x,y,32,32);
+}
 
 function stopAllTimes(){
   clearInterval(fish);
