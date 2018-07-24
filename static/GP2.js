@@ -27,12 +27,12 @@ function swim(fish_key){
 
 var fishArr = {}
 for(let i = 0; i<3; i++){
-  newFish = new Fish(i);
-  fishArr.add(i,newFish);
+  newFish = new Fish(2);
+  fishArr[i] = newFish;
   var newTimer = setInterval(function(){swim(i);}, newFish.speed);
   newFish.timer = newTimer;
 }
-
+//var newTimer = setInterval(function(){swim(0);}, newFish.speed);
 // var firstFish = new Fish(2);
 // var secondFish = new Fish(2);
 // firstFish.xPos = 100;
@@ -56,7 +56,7 @@ full_canvas()
 
 
 function stopAllTimes(){
-  for f in fishArr{
-    clearInterval(f.getTimer);
-  }
+  //for f in fishArr{
+  //  clearInterval(f.getTimer);
+//  }
 }
