@@ -12,11 +12,7 @@ function full_canvas(){
 
 function draw_fish(fish){
   fish.moveFish()
-  var img = new Image();
-  img.src = fish.getSSF();
-  img.onload = function() {
-    ctx.drawImage(img,fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
-  }
+  ctx.drawImage(fish.images[fish.direction],fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
 }
 
 function clear_fish(x,y){
@@ -40,7 +36,7 @@ firstFish.nextX = 101;
 firstFish.nextY = 101;
 secondFish.nextX = 201;
 secondFish.nextY = 201;
-firstFish.speed = 50;
+firstFish.speed = 100;
 var fishArr = {0 : firstFish, 1 : secondFish};
 var firstTimer = setInterval(function(){swim(0);}, firstFish.speed);
 var secondTimer = setInterval(function(){swim(1);}, secondFish.speed);

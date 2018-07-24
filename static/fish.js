@@ -8,21 +8,17 @@ class Fish{
     this.level = setLevel;
     this.strength = setLevel;
     this.currentFrame = 0;
-    this.direction = 3;
-    switch (this.strength) {
-      case 1:
-        this.speed = 400; //fix speed eventually
-        break;
-      case 2:
-        this.speed = 300; //fix speed eventually
-        break;
-      case 3:
-        this.speed = 200; //fix speed eventually
-        break;
+    this.images = [];
+    for(let i = 0; i<4; i++){
+      this.direction = i;
+      this.images.push(new Image());
+      this.images[i].src = this.getSS();
     }
+    this.setFishSpeed();
   }
 
   moveFish(){
+    this.currentFrame = (this.currentFrame + 1) % 4;
     this.xPos = this.nextX;
     this.yPos = this.nextY;
     this.nextY += 4;
@@ -44,9 +40,9 @@ class Fish{
     }
   }
 
-  //Returns src of image for sprite sheet and the frame
-  getSSF(){
-    this.currentFrame = (this.currentFrame + 1) % 4;
+  //Returns src of image for sprite sheet
+  getSS(){
+
     //Depending on the track part it will return a differnt sprite.
     switch (this.level) {
       case 1:
