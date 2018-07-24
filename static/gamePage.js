@@ -1,22 +1,23 @@
-var ctx = document.getElementById('canvas').getContext('2d');
+var ctx = document.getElementById('game-layer').getContext('2d');
 var fish_width = 32;
 var fish_height = 32;
 
 function full_canvas(){
-  var canvas = document.getElementById("canvas")
+  var canvas = document.getElementById("game-layer")
   let width = screen.innerWidth
   let height = screen.innerHeight
   canvas.style.width = width + "px";
   canvas.style.height = height + "px";
+
+  nickname = document.getElementById('hidden').innerHTML
+  console.log(nickname)
+  ctx.font = "30px Arial";
+  ctx.fillText(nickname,10,50);
 }
 
 function draw_fish(fish){
   fish.moveFish()
-  var img = new Image();
-  img.src = fish.getSSF();
-  img.onload = function() {
-    ctx.drawImage(img,fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
-  }
+  ctx.drawImage(fish.images[fish.direction],fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
 }
 
 function clear_fish(x,y){
@@ -40,11 +41,12 @@ firstFish.nextX = 101;
 firstFish.nextY = 101;
 secondFish.nextX = 201;
 secondFish.nextY = 201;
+firstFish.speed = 100;
 var fishArr = {0 : firstFish, 1 : secondFish};
-var firstTimer = setInterval(function(){swim(0);}, 100);
-var secondTimer = setInterval(function(){swim(1);}, 100);
+var firstTimer = setInterval(function(){swim(0);}, firstFish.speed);
+var secondTimer = setInterval(function(){swim(1);}, secondFish.speed);
 //var fish = setInterval(swim, 100);
-var stop = setInterval(stopAllTimes, 1000);
+var stop = setInterval(stopAllTimes, 10000);
 
 full_canvas()
 //var myVar = setInterval(moveFish, 1000);
