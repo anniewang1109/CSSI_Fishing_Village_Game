@@ -20,7 +20,7 @@ function clear_fish(x,y){
 }
 
 function swim(fish_key){
-  fish = fishArr[fish_key];
+  fish = fishArr[fish_key][0];
   clear_fish(fish.xPos,fish.yPos);
   draw_fish(fish);
 }
@@ -28,26 +28,9 @@ function swim(fish_key){
 var fishArr = {}
 for(let i = 0; i<3; i++){
   newFish = new Fish(2);
-  fishArr[i] = newFish;
   var newTimer = setInterval(function(){swim(i);}, newFish.speed);
-  newFish.timer = newTimer;
+  fishArr[i] = [newFish,newTimer];
 }
-//var newTimer = setInterval(function(){swim(0);}, newFish.speed);
-// var firstFish = new Fish(2);
-// var secondFish = new Fish(2);
-// firstFish.xPos = 100;
-// firstFish.yPos = 100;
-// secondFish.xPos = 200;
-// secondFish.yPos = 200;
-// firstFish.nextX = 101;
-// firstFish.nextY = 101;
-// secondFish.nextX = 201;
-// secondFish.nextY = 201;
-// firstFish.speed = 100;
-// var fishArr = {0 : firstFish, 1 : secondFish};
-// var firstTimer = setInterval(function(){swim(0);}, firstFish.speed);
-// var secondTimer = setInterval(function(){swim(1);}, secondFish.speed);
-
 
 var stop = setInterval(stopAllTimes, 10000);
 
@@ -56,7 +39,7 @@ full_canvas()
 
 
 function stopAllTimes(){
-  //for f in fishArr{
-  //  clearInterval(f.getTimer);
-//  }
+  for(let i = 0; i<3; i++){
+    clearInterval(fishArr[i][1]);
+  }
 }
