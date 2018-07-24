@@ -1,59 +1,55 @@
-
-
-class Fish(){
-  let x = 0; //change to start x
-  let y = 0; //change to start y
-  let nextX = 0;
-  let nextY = 0;
-  let level = 0;
-  let speed = 0;
-  let strength = 0;
-  let frame = -1;
-  let direction = 0;
+class Fish{
 
   constructor(setLevel){
-    level = setLevel;
-    strength = level;
+    this.xPos = 50; //change to start x
+    this.yPos = 0; //change to start y
+    this.nextX = 51;
+    this.nextY = 0;
+    this.level = setLevel;
+    this.strength = setLevel;
+    this.currentFrame = -1;
+    this.direction = 3;
     setFishSpeed();
   }
 
-  function getNextXY(){
-    x = nextX;
-    y = nextY;
+  moveFish(){
+    this.xPos = this.nextX;
+    this.yPos = this.nextY;
+    this.nextY += 1;
     //logic that follows path for nextX and nextY
     //sets Direction
   }
 
-  function setFishSpeed(){
-    switch (strength) {
+  setFishSpeed(){
+    switch (this.strength) {
       case 1:
-        speed = 5; //fix speed eventually
+        this.speed = 5; //fix speed eventually
         break;
       case 2:
-        speed = 10; //fix speed eventually
+        this.speed = 10; //fix speed eventually
         break;
       case 3:
-        speed = 20; //fix speed eventually
+        this.speed = 20; //fix speed eventually
         break;
     }
   }
 
   //Returns src of image for sprite sheet and the frame
-  function getSSF(){
+  getSSF(){
     frame = (frame + 1) % 3;
     //Depending on the track part it will return a differnt sprite.
-    switch (level) {
+    switch (this.level) {
       case 1:
-        return [getRed(), frame];
+        return [getRed(), this.currentFrame];
       case 2:
-        return [getBlue(), frame];
+        return [getBlue(), this.currentFrame];
       case 3:
-        return [getYellow(), frame];
+        return [getYellow(), this.currentFrame];
     }
   }
 
-  function getRed(){
-    switch (direction) {
+  getRed(){
+    switch (this.direction) {
       case 0:
         return "/imgs/red_fish_right.png";
       case 1:
@@ -65,8 +61,8 @@ class Fish(){
     }
   }
 
-  function getBlue(){
-    switch (direction) {
+  getBlue(){
+    switch (this.direction) {
       case 0:
         return "/imgs/blue_fish_right.png";
       case 1:
@@ -78,8 +74,8 @@ class Fish(){
     }
   }
 
-  function getYellow(){
-    switch (direction) {
+  getYellow(){
+    switch (this.direction) {
       case 0:
         return "/imgs/yellow_fish_right.png";
       case 1:
@@ -91,9 +87,9 @@ class Fish(){
     }
   }
 
-  function setCaught(){
-    strength--;
-    if(strength!=0){
+  setCaught(){
+    this.strength--;
+    if(this.strength!=0){
       setFishSpeed();
     }else{
       return false; //fish has been caught
