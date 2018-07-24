@@ -103,4 +103,8 @@ class Fish{
     return true; //fish has got away
   }
 
+  getTimer(){
+    return this.timer;
+  }
+
 }
