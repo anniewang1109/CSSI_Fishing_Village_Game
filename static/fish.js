@@ -1,3 +1,5 @@
+
+
 class Fish(){
   let x = 0; //change to start x
   let y = 0; //change to start y
