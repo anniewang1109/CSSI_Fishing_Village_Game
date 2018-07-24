@@ -11,7 +11,7 @@ full_canvas()
 
 var ctx = document.getElementById('canvas').getContext('2d');
 
-function draw_blue_fish(f,x,y){
+function draw_fish(f,x,y){
   var img = new Image();
   img.src = 'static/imgs/blue_fish_left.png';
   img.onload = function() {
@@ -19,24 +19,22 @@ function draw_blue_fish(f,x,y){
   }
 }
 
-function clear_blue_fish(x,y){
+function clear_fish(x,y){
   ctx.clearRect(x,y,96,32);
 }
 
-let x = 50;
-let y = 0;
 function moveFish(){
-  clear_blue_fish(x,y);
+  clear_fish(x,y);
   y += 10;
-  draw_blue_fish(f,x,y);
+  draw_fish(f,x,y);
 }
 
 let f = 0;
 function swim(){
   f = (f+1) % 3;
-  clear_blue_fish(x,y);
+  clear_fish(x,y);
   y += 1;
-  draw_blue_fish(f,x,y);
+  draw_fish(f,x,y);
 }
 
 //var myVar = setInterval(moveFish, 1000);
