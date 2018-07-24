@@ -35,9 +35,8 @@ class MainHandler(webapp2.RequestHandler):
         #Log in or make account
 class StartGameHandler(webapp2.RequestHandler):
     def get(self):
-        pass
-        #template = jinja_current_directory.get_template('/templates/gamePage.html')
-        #self.response.write(template.render())
+        template = jinja_current_directory.get_template('/templates/gamePage.html')
+        self.response.write(template.render())
     #def post(self):
         #template = jinja_current_directory.get_template('/templates/gamePage.html')
         #self.response.write(template.render())
