@@ -37,7 +37,19 @@ var stop = setInterval(stopAllTimes, 10000);
 full_canvas()
 //var myVar = setInterval(moveFish, 1000);
 
+//document.addEventListener("click", function(e){
+//    console.log("X: " + e.clientX + "Y: " + e.clientY);
+    //Start right x = 0, y=460
+    //turn up after x = 370
+    //turn right after y = 270
+    //turn down after x = 580
+    //turn right after y = 580
+    //turn up after x = 780
+    //turn right after y = 160
+    //turn down after x = 990
+    //turn right after y = 450
 
+//});
 function stopAllTimes(){
   for(let i = 0; i<3; i++){
     clearInterval(fishArr[i][1]);
