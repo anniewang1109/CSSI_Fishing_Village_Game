@@ -11,13 +11,13 @@ class Fish{
     this.direction = 3;
     switch (this.strength) {
       case 1:
-        this.speed = 5; //fix speed eventually
+        this.speed = 400; //fix speed eventually
         break;
       case 2:
-        this.speed = 10; //fix speed eventually
+        this.speed = 300; //fix speed eventually
         break;
       case 3:
-        this.speed = 20; //fix speed eventually
+        this.speed = 200; //fix speed eventually
         break;
     }
   }
@@ -25,7 +25,7 @@ class Fish{
   moveFish(){
     this.xPos = this.nextX;
     this.yPos = this.nextY;
-    this.nextY += this.speed;
+    this.nextY += 4;
     //logic that follows path for nextX and nextY
     //sets Direction
   }
@@ -33,13 +33,13 @@ class Fish{
   setFishSpeed(){
     switch (this.strength) {
       case 1:
-        this.speed = 1; //fix speed eventually
+        this.speed = 400; //fix speed eventually
         break;
       case 2:
-        this.speed = 2; //fix speed eventually
+        this.speed = 300; //fix speed eventually
         break;
       case 3:
-        this.speed = 5; //fix speed eventually
+        this.speed = 200; //fix speed eventually
         break;
     }
   }
