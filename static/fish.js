@@ -53,39 +53,39 @@ class Fish(){
   function getRed(){
     switch (direction) {
       case 0:
-        return "/imgs/red_fish_right";
+        return "/imgs/red_fish_right.png";
       case 1:
-        return "/imgs/red_fish_up";
+        return "/imgs/red_fish_up.png";
       case 2:
-        return "/imgs/red_fish_left";
+        return "/imgs/red_fish_left.png";
       case 3:
-        return "/imgs/red_fish_down";
+        return "/imgs/red_fish_down.png";
     }
   }
 
   function getBlue(){
     switch (direction) {
       case 0:
-        return "/imgs/blue_fish_right";
+        return "/imgs/blue_fish_right.png";
       case 1:
-        return "/imgs/blue_fish_up";
+        return "/imgs/blue_fish_up.png";
       case 2:
-        return "/imgs/blue_fish_left";
+        return "/imgs/blue_fish_left.png";
       case 3:
-        return "/imgs/blue_fish_down";
+        return "/imgs/blue_fish_down.png";
     }
   }
 
   function getYellow(){
     switch (direction) {
       case 0:
-        return "/imgs/yellow_fish_right";
+        return "/imgs/yellow_fish_right.png";
       case 1:
-        return "/imgs/yellow_fish_up";
+        return "/imgs/yellow_fish_up.png";
       case 2:
-        return "/imgs/yellow_fish_left";
+        return "/imgs/yellow_fish_left.png";
       case 3:
-        return "/imgs/yellow_fish_down";
+        return "/imgs/yellow_fish_down.png";
     }
   }
 
