@@ -10,11 +10,12 @@ function full_canvas(){
   canvas.style.height = height + "px";
 }
 
-function draw_fish(src, frame,x,y){
+function draw_fish(fish){
+  fish.moveFish()
   var img = new Image();
-  img.src = src;
+  img.src = fish.getSSF();
   img.onload = function() {
-    ctx.drawImage(img,frame*32,32,32,32, x,y,32,32);
+    ctx.drawImage(img,fish.currentFrame * 32,32,32,32, fish.xPos,fish.yPos,32,32);
   }
 }
 
@@ -22,14 +23,10 @@ function clear_fish(x,y){
   ctx.clearRect(x,y,32,32);
 }
 
-let f = 0;
 function swim(fish_key){
-  f = (f+1)%4;
   fish = fishArr[fish_key];
-  SSF = fish.getSSF();
   clear_fish(fish.xPos,fish.yPos);
-  fish.moveFish();
-  draw_fish(SSF[0],SSF[1],fish.xPos,fish.yPos);
+  draw_fish(fish);
 }
 
 

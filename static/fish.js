@@ -50,11 +50,11 @@ class Fish{
     //Depending on the track part it will return a differnt sprite.
     switch (this.level) {
       case 1:
-        return [this.getRed(), this.currentFrame];
+        return this.getRed();
       case 2:
-        return [this.getBlue(), this.currentFrame];
+        return this.getBlue();
       case 3:
-        return [this.getYellow(), this.currentFrame];
+        return this.getYellow();
     }
   }
 
