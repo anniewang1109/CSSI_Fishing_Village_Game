@@ -1,6 +1,7 @@
-var canvas = document.getElementById("canvas")
+
 
 function full_canvas(){
+  var canvas = document.getElementById("canvas")
   let width = screen.innerWidth
   let height = screen.innerHeight
 
@@ -10,8 +11,9 @@ function full_canvas(){
 
 full_canvas()
 
-function blue_fish(){
-  var ctx = document.getElementById('canvas').getContext('2d');
+var ctx = document.getElementById('canvas').getContext('2d');
+
+function draw_blue_fish(){
   var img = new Image();
   img.src = 'static/imgs/blue_fish_down.png'
   img.onload = function() {
@@ -19,4 +21,8 @@ function blue_fish(){
   }
 }
 
- blue_fish()
+draw_blue_fish()
+
+function disappear_blue_fish(){
+
+}
