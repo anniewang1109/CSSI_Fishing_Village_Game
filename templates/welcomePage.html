@@ -11,14 +11,24 @@
   <body>
 
     {%if user %}
-      <h1>hello {{nickname}}</h1>
+      <p>Welcome {{nickname}}</p>
       <br>
-      <a href="/game">Start</a>
-      <br>
-      <a href="{{logout_url}}">Sign Out</a>
+      <a class="button" href="{{logout_url}}">Sign Out</a>
+
+      <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+      <div class="w3-display-bottomright w3-padding-1px w3-xlarge">
+        By: Daniel, Annie, and Anas
+      </div>
+      <div id = "title" class="w3-display-middle">
+        <h1 class="w3-jumbo w3-animate-top">Fishing Village</h1>
+        <hr class="w3-border-grey" style="margin:auto;width:50%">
+
+        <h2 class="w3-extralarge w3-center">Subtitle</h2>
+      </div>
+      <a class="button" href="/game">Start</a>
+
     {%else%}
-      <a id="logInButton" href="{{login_url}}">Log In</a>
-    {%endif%}
+      <a class="button" href="{{login_url}}">Log In</a>
     <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
       <div class="w3-display-bottomright w3-padding-1px w3-xlarge">
         By: Daniel, Annie, and Anas
@@ -29,6 +39,8 @@
 
         <h2 class="w3-extralarge w3-center">Subtitle</h2>
       </div>
+    {%endif%}
+
     <script src="static/welcomePage.js"></script>
   </body>
 </html>

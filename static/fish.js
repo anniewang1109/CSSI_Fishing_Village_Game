@@ -12,7 +12,7 @@ class Fish{
     for(let i = 0; i<4; i++){
       this.direction = i;
       this.images.push(new Image());
-      this.images[i].src = this.getSS();
+      this.images[i].src = "/static/imgs/" + this.getSS() + ".png";
     }
     this.setFishSpeed();
   }
@@ -57,39 +57,39 @@ class Fish{
  getRed(){
     switch (this.direction) {
       case 0:
-        return "/imgs/red_fish_right.png";
+        return "red_fish_right";
       case 1:
-        return "/imgs/red_fish_up.png";
+        return "red_fish_up";
       case 2:
-        return "/imgs/red_fish_left.png";
+        return "red_fish_left";
       case 3:
-        return "/imgs/red_fish_down.png";
+        return "red_fish_down";
     }
   }
 
  getBlue(){
     switch (this.direction) {
       case 0:
-        return "/imgs/blue_fish_right.png";
+        return "blue_fish_right";
       case 1:
-        return "/imgs/blue_fish_up.png";
+        return "blue_fish_up";
       case 2:
-        return "/imgs/blue_fish_left.png";
+        return "blue_fish_left";
       case 3:
-        return "/static/imgs/blue_fish_down.png";
+        return "blue_fish_down";
     }
   }
 
  getYellow(){
     switch (this.direction) {
       case 0:
-        return "/imgs/yellow_fish_right.png";
+        return "yellow_fish_right";
       case 1:
-        return "/imgs/yellow_fish_up.png";
+        return "yellow_fish_up";
       case 2:
-        return "/imgs/yellow_fish_left.png";
+        return "yellow_fish_left";
       case 3:
-        return "/imgs/yellow_fish_down.png";
+        return "yellow_fish_down";
     }
   }
 
@@ -101,10 +101,6 @@ class Fish{
       return false; //fish has been caught
     }
     return true; //fish has got away
-  }
-
-  getTimer(){
-    return this.timer;
   }
 
 }
