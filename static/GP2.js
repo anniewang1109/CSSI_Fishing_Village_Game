@@ -15,7 +15,7 @@ function draw_fish(fish){
   var img = new Image();
   img.src = fish.getSSF();
   img.onload = function() {
-    ctx.drawImage(img,fish.currentFrame * 32,32,32,32, fish.xPos,fish.yPos,32,32);
+    ctx.drawImage(img,fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
   }
 }
 
