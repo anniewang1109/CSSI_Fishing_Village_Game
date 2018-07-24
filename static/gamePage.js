@@ -10,13 +10,13 @@ function full_canvas(){
 
 full_canvas()
 
-function level_one(){
+function blue_fish(){
   var ctx = document.getElementById('canvas').getContext('2d');
   var img = new Image();
-  img.src = 'static/imgs/Fish_Sprites/fishDOWN.png'
+  img.src = 'static/imgs/blue_fish_down.png'
   img.onload = function() {
     ctx.drawImage(img,10 , 50, 96, 32);
   }
 }
 
-level_one()
+ blue_fish()
