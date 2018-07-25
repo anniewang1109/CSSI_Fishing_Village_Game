@@ -58,26 +58,55 @@ function stopAllTimes(){
   clearInterval(secondTimer);
 }
 
-function draw_fisher(){
-  var img = new Image();
-  img.src = "/static/imgs/singlewatertile.gif";
+
+
+function draw_fisher(x,y){
+  //let fisher_list = []
+  let img = new Image(92,128);
+  img.src = "/static/imgs/fisherman_left.png";
+  //fisher_list.push(img);
+  //for (let i = 0; len = fisher_list.length; i<len; i++ )
   img.onload = function(){
-    ctx.drawImage(img,0,440,50,50);
-  }
+    ctx.drawImage(img,x,y,92,128);
+  }//}
 }
 
-draw_fisher()
+
+draw_fisher(0,800)
 
 
-// function duplicate_fisher(){
-//   fisher = document.getElementById('fisher')
-//   fisher.addEventListenter('mousedown', ()=> {
-//     draw_fisher()
-//   })
-//   fisher.addEventListenter('mouseup', ()=> {
-//     draw_fisher()
-//   })
 //
+// function mousedown(event){
+//   let mouseX = event.pageX - event.offsetX
+//   let mouseY = event.pageY - event.offsetY
+//   console.log("x:" + mouseX);
+//   console.log("y:" + mouseX);
+//   draw_fisher(mouseX, mouseY);
 // }
+//
+// function mouseup(event){
+//   let mouseX = event.pageX - event.offsetX
+//   let mouseY = event.pageY - event.offsetY
+//   console.log("x:" + mouseX);
+//   console.log("y:" + mouseX);
+//   draw_fisher(mouseX, mouseY);
+// }
+//
+// fisher = document.getElementById('fisher');
+// console.log(fisher)
+//
+// fisher.addEventListenter('onmousedown', mousedown);
+//
+// fisher.addEventListenter('onmouseup', mouseup);
 
-function handleMouseDown()
+// var isDragging = false
+
+//
+// function handleMouseUp(e){
+//   mouseX = e.pageX - e.offsetX
+//   mouseY = e.pageY - e.offsetY
+//   // isDragging = false
+// }
+//
+// handleMouseDown()
+// handleMouseUp()
