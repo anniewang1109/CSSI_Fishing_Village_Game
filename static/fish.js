@@ -125,56 +125,18 @@ class Fish{
 
   //Returns src of image for sprite sheet
   getSS(level,i){
-
     //Depending on the track part it will return a differnt sprite.
     switch (level) {
       case 1:
-        return this.getRed(i);
-        break;
+        return ["red_fish_right", "red_fish_up", "red_fish_down"][i];
       case 2:
-        return this.getBlue(i);
-        break;
+        return ["blue_fish_right", "blue_fish_up", "blue_fish_down"][i];
       case 3:
-        return this.getYellow(i);
-        break;
-    }
-  }
-
- getRed(i){
-    switch (i) {
-      case 0:
-        return "red_fish_right";
-      case 1:
-        return "red_fish_up";
-      case 2:
-        return "red_fish_down";
-    }
-  }
-
- getBlue(i){
-    switch (i) {
-      case 0:
-        return "blue_fish_right";
-      case 1:
-        return "blue_fish_up";
-      case 2:
-        return "blue_fish_down";
-    }
-  }
-
- getYellow(i){
-    switch (i) {
-      case 0:
-        return "yellow_fish_right";
-      case 1:
-        return "yellow_fish_up";
-      case 2:
-        return "yellow_fish_down";
+        return ["yellow_fish_right", "yellow_fish_up", "yellow_fish_down"][i];
     }
   }
 
   setCaught(){
-    console.log(this.strength);
     this.strength  -= 1;
     if(this.strength>0){
       this.setFishSpeed();

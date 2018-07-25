@@ -1,5 +1,14 @@
 var ctx = document.getElementById('game-layer').getContext('2d');
 var utx = document.getElementById('ui-layer').getContext('2d');
+var fishArr = [];
+var fisherArr = [];
+var level = "";
+var currentFishIndex = 0;
+var currentFisherIndex = 0;
+var currentLevel = 0;
+var fishCount = 0;
+var wait;
+
 function full_canvas(){
   var canvas = document.getElementById("game-layer")
   let width = screen.innerWidth
@@ -13,24 +22,20 @@ function draw_fish(fish){
   ctx.drawImage(fish.images[fish.direction],fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
 }
 
-function draw_fisher(src,x,y,UorC){
-  newFisher = new Image();
-  newFisher.src = src;
-  newFisher.onload = function(){
-    if(UorC){
-      utx.drawImage(newFisher,0,0,46,128,x,y,46,128);
-    }else{
-      ctx.drawImage(newFisher,0,0,46,128,x,y,46,128);
-    }
+function draw_fisher(fisher,UorC){
+  if(UorC){
+    utx.drawImage(fisher.images[fisher.direction],0,0,46,128,fisher.xPos,fisher.yPos,46,128);
+  }else{
+    ctx.drawImage(fisher.images[fisher.direction],0,0,46,128,fisher.xPos,fisher.yPos,46,128);
   }
-  console.log(newFisher);
 }
+
 
 function clear_fish(x,y){
   ctx.clearRect(x,y,32,32);
 }
 
-function clear_fisher(x,y){
+function clear_fisher(){
   utx.clearRect(0,0,1440,900);
 }
 
@@ -54,7 +59,6 @@ function catch_fish(fisher_index){
     fisher = fisherArr[fisher_index][0];
     for(var i = 0; i<fishArr.length; i++){
         if(fishArr[i][0] != null){
-          //console.log("Fisher: " + fisher.xPos + " - " + fisher.yPos + " | " + "Fish: "+ fishArr[i][0].xPos + " - " + fishArr[i][0].yPos);
           if(Math.pow(Math.pow(fisher.xPos - fishArr[i][0].xPos,2) + Math.pow(fisher.yPos - fishArr[i][0].yPos,2),.5) < 50){
               fishArr[i][0].setCaught();
               break;
@@ -63,17 +67,10 @@ function catch_fish(fisher_index){
     }
 }
 
-var fishArr = [];
-var fisherArr = [];
-var level = "";
-var currentIndex = 0;
-var currentLevel = 0;
-var fishCount = 0;
-var wait;
 function readLevel(){
     clearInterval(wait);
-    if(currentIndex != level.length){
-      switch(level.substring(currentIndex,currentIndex+1)){
+    if(currentFishIndex != level.length){
+      switch(level.substring(currentFishIndex,currentFishIndex+1)){
         case "|":
           fishCount--;
           break;
@@ -89,7 +86,7 @@ function readLevel(){
           break;
       }
       fishCount++;
-      currentIndex++;
+      currentFishIndex++;
       wait = setInterval(readLevel, 1000);
     }
 }
@@ -100,32 +97,30 @@ function make_fish(level, i){
   fishArr.push([newFish,newTimer]);
 }
 
-function make_fisher(x,y,i){
-  newFisher = new Fisher(x,y);
+function make_fisher(fisher,i){
   newTimer = setInterval(function(){catch_fish(i);}, 1000);
-  fisherArr.push([newFisher,newTimer]);
-  console.log(fisherArr.length);
+  fisherArr.push([fisher,newTimer]);
 }
-
-dragFisher = false;
 
 function drag(e){
-  clear_fisher(e.pageX,e.pageY);
-  draw_fisher("static/imgs/fisherman_right.png", e.pageX, e.pageY, true);
-  console.log("drag");
+  newFisher.xPos = e.pageX;
+  newFisher.yPos = e.pageY;
+  clear_fisher();
+  draw_fisher(newFisher, true);
 }
 
+var newFisher;
 function mouseUp(e){
   //only do this if not in river
-  draw_fisher("static/imgs/fisherman_right.png",e.pageX, e.pageY, false);
-  dragFisher = false;
+  draw_fisher(newFisher,0, false);
   document.removeEventListener("mousemove", drag);
   document.removeEventListener("mouseup", mouseUp);
+  make_fisher(newFisher, currentFisherIndex++);
 }
 
 document.addEventListener("mousedown", function(e){
+  newFisher = new Fisher(e.pageX,e.pageY);
   if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
-    dragFisher = true;
     document.addEventListener("mousemove", drag);
     document.addEventListener("mouseup", mouseUp);
   };
@@ -138,8 +133,6 @@ function getLevel(){
 
 full_canvas()
 getLevel();
-make_fisher(200,500,0);
-//draw_fisher("static/imgs/fisherman_right.png",200,500);
 
 level = levels.split("_")[0];
 readLevel();
