@@ -2,6 +2,7 @@ var ctx = document.getElementById('game-layer').getContext('2d');
 var fish_width = 32;
 var fish_height = 32;
 
+
 function full_canvas(){
   var canvas = document.getElementById("game-layer")
   let width = screen.innerWidth
@@ -11,8 +12,8 @@ function full_canvas(){
 
   nickname = document.getElementById('hidden').innerHTML
   console.log(nickname)
-  ctx.font = "30px Arial";
-  ctx.fillText(nickname,10,50);
+  ctx.font = "14px";
+  ctx.fillText(nickname,0,15);
 }
 
 function draw_fish(fish){
@@ -56,3 +57,27 @@ function stopAllTimes(){
   clearInterval(firstTimer);
   clearInterval(secondTimer);
 }
+
+function draw_fisher(){
+  var img = new Image();
+  img.src = "/static/imgs/singlewatertile.gif";
+  img.onload = function(){
+    ctx.drawImage(img,0,440,50,50);
+  }
+}
+
+draw_fisher()
+
+
+// function duplicate_fisher(){
+//   fisher = document.getElementById('fisher')
+//   fisher.addEventListenter('mousedown', ()=> {
+//     draw_fisher()
+//   })
+//   fisher.addEventListenter('mouseup', ()=> {
+//     draw_fisher()
+//   })
+//
+// }
+
+function handleMouseDown()
