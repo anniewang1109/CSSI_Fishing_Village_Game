@@ -62,43 +62,61 @@ function stopAllTimes(){
 
 function draw_fisher(x,y){
   //let fisher_list = []
-  let img = new Image(92,128);
+  let img = new Image();
   img.src = "/static/imgs/fisherman_left.png";
   //fisher_list.push(img);
   //for (let i = 0; len = fisher_list.length; i<len; i++ )
   img.onload = function(){
     ctx.drawImage(img,x,y,92,128);
-    
+
   }//}
 }
 
+function clear_fisher_man(x,y){
+  ctx.clearRect(x,y,46,128)
+}
 
 draw_fisher(0,800)
 
+var isDragging = false
 
-//
-// function mousedown(event){
-//   let mouseX = event.pageX - event.offsetX
-//   let mouseY = event.pageY - event.offsetY
-//   console.log("x:" + mouseX);
-//   console.log("y:" + mouseX);
-//   draw_fisher(mouseX, mouseY);
-// }
-//
-// function mouseup(event){
-//   let mouseX = event.pageX - event.offsetX
-//   let mouseY = event.pageY - event.offsetY
-//   console.log("x:" + mouseX);
-//   console.log("y:" + mouseX);
-//   draw_fisher(mouseX, mouseY);
-// }
-//
-// fisher = document.getElementById('fisher');
-// console.log(fisher)
-//
-// fisher.addEventListenter('onmousedown', mousedown);
-//
-// fisher.addEventListenter('onmouseup', mouseup);
+function mouseDown(event){
+  let mouseX = event.clientX
+  let mouseY = event.clientY
+  console.log("x:" + mouseX);
+  console.log("y:" + mouseX);
+  // draw_fisher(mouseX, mouseY);
+  isDragging = true
+}
+
+function mouseUp(event){
+  let mouseX = event.clientX;
+  let mouseY = event.clientY;
+  console.log("x:" + mouseX);
+  console.log("y:" + mouseX);
+  // draw_fisher(mouseX, mouseY);
+  isDragging = false;
+}
+
+
+function mouseMove(event){
+  let mouseX = event.clientX;
+  let mouseY = event.clientY;
+  if(isDragging){
+    clear_fisher_man(old_x, new_x);
+    draw_fisher(mouseX, mouseY);
+  }
+}
+
+let fisher = document.getElementById("fisher");
+// console.log(fisher);
+// fisher.addEventListener("click", function(){
+//   console.log("test");
+// });
+
+fisher.addEventListener('mousedown', mousedown);
+
+fisher.addEventListener('mouseup', mouseup);
 
 // var isDragging = false
 
