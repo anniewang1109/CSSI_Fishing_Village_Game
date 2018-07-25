@@ -17,7 +17,7 @@ function draw_fisher(src,x,y){
   newFisher = new Image();
   newFisher.src = src;
   newFisher.onload = function(){
-    utx.drawImage(newFisher,x,y,92,256);
+    utx.drawImage(newFisher,0,0,46,128,x,y,46,128);
   }
   console.log(newFisher);
 }
