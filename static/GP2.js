@@ -1,6 +1,4 @@
 var ctx = document.getElementById('game-layer').getContext('2d');
-var fish_width = 32;
-var fish_height = 32;
 
 function full_canvas(){
   var canvas = document.getElementById("game-layer")
@@ -26,16 +24,14 @@ function swim(fish_index){
     draw_fish(fish);
   }else{
     clearInterval(fishArr[fish_index][1]);
-    //fishArr.splice(fish_index-fishOffset,1);
-    console.log("Removed Fish");
-    counter--;
+    clear_fish(fish.xPos,fish.yPos);
   }
 }
 
-var counter = 0;
 var fishArr = [];
 var level = ""
 var currentIndex = 0;
+var currentLevel = 0;
 var fishCount = 0;
 var wait;
 function readLevel(){
@@ -60,18 +56,21 @@ function readLevel(){
       wait = setInterval(readLevel, 1000);
     }
 }
-
 function makeFish(level, i){
   newFish = new Fish(level);
   var newTimer = setInterval(function(){swim(i);}, newFish.speed);
   fishArr.push([newFish,newTimer]);
 }
-full_canvas()
 // document.addEventListener("click", function(e){
 //      document.getElementById("demo").innerHTML = e.clientX + " : " + e.clientY;
 // });
+var levels = []
 function getLevel(){
-  level = document.getElementById('levelData').innerHTML;
+  levels = document.getElementById('levelData').innerHTML;//.split("_");
 }
+
+full_canvas()
 getLevel();
+
+level = levels.split("_")[0];
 readLevel();
