@@ -19,34 +19,62 @@ function clear_fish(x,y){
   ctx.clearRect(x,y,32,32);
 }
 
-function swim(fish_key){
-  fish = fishArr[fish_key][0];
-
+function swim(fish_index){
+  fish = fishArr[fish_index][0];
+  console.log(fishArr.length)
   if(fish.state != 9){
     clear_fish(fish.xPos,fish.yPos);
     draw_fish(fish);
   }else{
-    fishArr.splice(fish_key,1);
+    clearInterval(fishArr[fish_index][1]);
+    fishArr.splice(fish_index,1);
+    console.log("Removed Fish");
+    counter --;
   }
 }
 
-var fishArr = []
-for(let i = 0; i<3; i++){
-  newFish = new Fish(2);
+
+var counter = 0;
+var fishArr = [];
+var level = "2||1|||2||||1||1|||2"
+var currentIndex = 0;
+var fishCount = 0;
+var wait;
+function readLevel(){
+    clearInterval(wait);
+    if(currentIndex != level.length){
+      switch(level.substring(currentIndex,currentIndex+1)){
+        case "|":
+          fishCount--;
+          break;
+        case "1":
+          makeFish(1,fishCount);
+          break;
+        case "2":
+          makeFish(2,fishCount);
+          break;
+        case "3":
+          makeFish(3,fishCount);
+          break;
+      }
+      fishCount++;
+      currentIndex++;
+      wait = setInterval(readLevel, 1000);
+    }
+}
+
+function makeFish(level, i){
+  newFish = new Fish(level);
   var newTimer = setInterval(function(){swim(i);}, newFish.speed);
   fishArr.push([newFish,newTimer]);
 }
 
-//var stop = setInterval(stopAllTimes, 1000);
+// var stop = setInterval(stopAllTimes, 100000);
 
 full_canvas()
 //var myVar = setInterval(moveFish, 1000);
 
-document.addEventListener("click", function(e){
-    document.getElementById("demo").innerHTML = e.clientX + " : " + e.clientY;
-});
-function stopAllTimes(){
-  for(let i = 0; i<3; i++){
-    clearInterval(fishArr[i][1]);
-  }
-}
+// document.addEventListener("click", function(e){
+//      document.getElementById("demo").innerHTML = e.clientX + " : " + e.clientY;
+// });
+readLevel();
