@@ -3,15 +3,16 @@ class Fish{
   constructor(setLevel){
     this.state = 0;
     this.direction = -1;
-    this.moveFish();
     this.strength = setLevel;
+    this.setFishSpeed();
+    this.moveFish();
     this.currentFrame = 0;
     this.images = [];
     for(let i = 0; i<3; i++){
       this.images.push(new Image());
       this.images[i].src = "/static/imgs/" + this.getSS(setLevel,i) + ".png";
     }
-    this.setFishSpeed();
+
   }
 
   moveFish(){
@@ -24,16 +25,16 @@ class Fish{
         this.yPos = 485 + this.offsetY;
         this.direction = 0;
       case 0: //right
-        this.xPos = this.xPos + 4;
+        this.xPos = this.xPos + this.speed;
         this.yPos = this.yPos;
         break;
       case 1: //up
         this.xPos = this.xPos;
-        this.yPos = this.yPos - 4; //2.5
+        this.yPos = this.yPos - this.speed; //2.5
         break;
       case 2: //down
         this.xPos = this.xPos;
-        this.yPos = this.yPos + 4; //2.5
+        this.yPos = this.yPos + this.speed; //2.5
         break;
     }
     switch(this.state){
@@ -108,13 +109,16 @@ class Fish{
   setFishSpeed(){
     switch (this.strength) {
       case 1:
-        this.speed = 120; //fix speed eventually
+        this.timeSetting = 120; //fix speed eventually
+        this.speed = 3;
         break;
       case 2:
-        this.speed = 100; //fix speed eventually
+        this.timeSetting = 100; //fix speed eventually
+        this.speed = 4;
         break;
       case 3:
-        this.speed = 80; //fix speed eventually
+        this.timeSetting = 80; //fix speed eventually
+        this.speed = 5;
         break;
     }
   }
@@ -174,7 +178,7 @@ class Fish{
     this.strength  -= 1;
     if(this.strength>0){
       this.setFishSpeed();
-      console.log(this.strength);
+
     }else{
       this.state = 9;
     }

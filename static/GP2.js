@@ -53,7 +53,6 @@ function catch_fish(fisher_index){
           //console.log("Fisher: " + fisher.xPos + " - " + fisher.yPos + " | " + "Fish: "+ fishArr[i][0].xPos + " - " + fishArr[i][0].yPos);
           if(Math.pow(Math.pow(fisher.xPos - fishArr[i][0].xPos,2) + Math.pow(fisher.yPos - fishArr[i][0].yPos,2),.5) < 50){
               fishArr[i][0].setCaught();
-              fishArr[i][1] = setInterval(function(){swim(i);}, fishArr[i][0].speed);
               break;
           }
         }
@@ -93,7 +92,7 @@ function readLevel(){
 
 function make_fish(level, i){
   newFish = new Fish(level);
-  newTimer = setInterval(function(){swim(i);}, newFish.speed);
+  newTimer = setInterval(function(){swim(i);}, newFish.timeSetting);
   fishArr.push([newFish,newTimer]);
 }
 
