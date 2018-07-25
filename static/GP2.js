@@ -21,22 +21,20 @@ function clear_fish(x,y){
 
 function swim(fish_index){
   fish = fishArr[fish_index][0];
-  console.log(fishArr.length)
   if(fish.state != 9){
     clear_fish(fish.xPos,fish.yPos);
     draw_fish(fish);
   }else{
     clearInterval(fishArr[fish_index][1]);
-    fishArr.splice(fish_index,1);
+    //fishArr.splice(fish_index-fishOffset,1);
     console.log("Removed Fish");
-    counter --;
+    counter--;
   }
 }
 
-
 var counter = 0;
 var fishArr = [];
-var level = "2||1|||2||||1||1|||2"
+var level = ""
 var currentIndex = 0;
 var fishCount = 0;
 var wait;
@@ -68,13 +66,12 @@ function makeFish(level, i){
   var newTimer = setInterval(function(){swim(i);}, newFish.speed);
   fishArr.push([newFish,newTimer]);
 }
-
-// var stop = setInterval(stopAllTimes, 100000);
-
 full_canvas()
-//var myVar = setInterval(moveFish, 1000);
-
 // document.addEventListener("click", function(e){
 //      document.getElementById("demo").innerHTML = e.clientX + " : " + e.clientY;
 // });
+function getLevel(){
+  level = document.getElementById('levelData').innerHTML;
+}
+getLevel();
 readLevel();

@@ -29,11 +29,11 @@ class Fish{
         break;
       case 1: //up
         this.xPos = this.xPos;
-        this.yPos = this.yPos - 4;
+        this.yPos = this.yPos - 4; //2.5
         break;
       case 2: //down
         this.xPos = this.xPos;
-        this.yPos = this.yPos + 4;
+        this.yPos = this.yPos + 4; //2.5
         break;
     }
     switch(this.state){
