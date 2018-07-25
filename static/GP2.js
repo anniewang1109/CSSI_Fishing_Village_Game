@@ -21,18 +21,23 @@ function clear_fish(x,y){
 
 function swim(fish_key){
   fish = fishArr[fish_key][0];
-  clear_fish(fish.xPos,fish.yPos);
-  draw_fish(fish);
+
+  if(fish.state != 9){
+    clear_fish(fish.xPos,fish.yPos);
+    draw_fish(fish);
+  }else{
+    fishArr.splice(fish_key,1);
+  }
 }
 
-var fishArr = {}
+var fishArr = []
 for(let i = 0; i<3; i++){
   newFish = new Fish(2);
   var newTimer = setInterval(function(){swim(i);}, newFish.speed);
-  fishArr[i] = [newFish,newTimer];
+  fishArr.push([newFish,newTimer]);
 }
 
-//var stop = setInterval(stopAllTimes, 10000);
+//var stop = setInterval(stopAllTimes, 1000);
 
 full_canvas()
 //var myVar = setInterval(moveFish, 1000);

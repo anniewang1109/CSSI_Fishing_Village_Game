@@ -15,9 +15,6 @@ class Fish{
   }
 
   moveFish(){
-    //console.log(screen.width + " : " + screen.height);
-
-    //this.currentFrame = (this.currentFrame + 1) % 4;
     switch(this.direction){
       case -1://init
         this.xPos = 0;
@@ -62,31 +59,34 @@ class Fish{
         }
         break;
       case 4:
-        if(this.xPos>620 && this.xPos<610){ //center at 
+        if(this.xPos>760 && this.xPos<770){ //center at 760
          this.direction = 1;
          this.state++;
         }
         break;
       case 5:
-        if(this.yPos>80 && this.yPos<90){
+        if(this.yPos>150 && this.yPos<160){ // center at 160
          this.direction = 0;
          this.state++;
         }
         break;
       case 6:
-        if(this.xPos>335 && this.xPos<345){
+        if(this.xPos>970 && this.xPos<980){ // center at 970
          this.direction = 2;
          this.state++;
         }
         break;
       case 7:
-        if(this.yPos>260 && this.yPos<270){
+        if(this.yPos>470 && this.yPos<480){ //
          this.direction = 0;
          this.state++;
         }
         break;
-      //case 8:
-
+      case 8:
+        if(this.xPos>1440){
+         this.state++;
+        }
+        break;
     }
 
     //sets Direction ||  idicated threshold buffer current buffer = 20
