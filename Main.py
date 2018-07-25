@@ -34,7 +34,7 @@ class MainHandler(webapp2.RequestHandler):
 
 class WinHandler(webapp2.RequestHandler):
     def get(self):
-        template=jinja_current_dir.get_template('/templates/winPage.html')
+        template=jinja_current_directory.get_template('/templates/winPage.html')
         self.response.write(template.render())
 
 class StartGameHandler(webapp2.RequestHandler):
