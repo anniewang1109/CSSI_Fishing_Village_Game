@@ -169,14 +169,15 @@ class Fish{
     }
   }
 
-  setCaught(i){
-    this.strength--;
-    if(this.strength!=0){
-      setFishSpeed();
+  setCaught(){
+    console.log(this.strength);
+    this.strength  -= 1;
+    if(this.strength>0){
+      this.setFishSpeed();
+      console.log(this.strength);
     }else{
-      return false; //fish has been caught
+      this.state = 9;
     }
-    return true; //fish has got away
   }
 
 }
