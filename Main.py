@@ -32,11 +32,6 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_current_directory.get_template('/templates/welcomePage.html')
         self.response.write(template.render(template_vars))
 
-class WinHandler(webapp2.RequestHandler):
-    def get(self):
-        template=jinja_current_directory.get_template('/templates/winPage.html')
-        self.response.write(template.render())
-
 class StartGameHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -51,6 +46,11 @@ class StartGameHandler(webapp2.RequestHandler):
             self.response.write(template.render(template_vars))
         else:
             self.redirect('/')
+
+class ResultsHandler(webapp2.RequestHandler):
+    def get(self):
+        template=jinja_current_directory.get_template('/templates/results.html')
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
