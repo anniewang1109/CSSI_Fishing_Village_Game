@@ -27,6 +27,9 @@ function draw_fisher(fisher,UorC){
     utx.drawImage(fisher.images[fisher.direction],0,0,46,128,fisher.xPos,fisher.yPos,46,128);
   }else{
     ctx.drawImage(fisher.images[fisher.direction],0,0,46,128,fisher.xPos,fisher.yPos,46,128);
+    //ctx.beginPath();
+    //ctx.arc(fisher.xPos,fisher.yPos,50,0,2*Math.PI);
+    //ctx.stroke();
   }
 }
 
@@ -57,10 +60,12 @@ function swim(fish_index){
 
 function catch_fish(fisher_index){
     fisher = fisherArr[fisher_index][0];
+
     for(var i = 0; i<fishArr.length; i++){
         if(fishArr[i][0] != null){
           if(Math.pow(Math.pow(fisher.xPos - fishArr[i][0].xPos,2) + Math.pow(fisher.yPos - fishArr[i][0].yPos,2),.5) < 50){
               fishArr[i][0].setCaught();
+              console.log(fisher_index + " has caught a fish");
               break;
           }
         }
@@ -133,6 +138,6 @@ function getLevel(){
 
 full_canvas()
 getLevel();
-
+console.log(levels.split("_"));
 level = levels.split("_")[0];
 readLevel();
