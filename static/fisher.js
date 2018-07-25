@@ -3,6 +3,7 @@ class Fisher{
     this.xPos = x;
     this.yPos = y;
     this.direction = 0;
+    this.range = 100;
     this.images = [];
     for(let i = 0; i<3; i++){
       this.images.push(new Image());
