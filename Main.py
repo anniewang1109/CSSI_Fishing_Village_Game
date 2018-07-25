@@ -49,11 +49,13 @@ class StartGameHandler(webapp2.RequestHandler):
 
 class ResultsHandler(webapp2.RequestHandler):
     def get(self):
-
-        template_vars = {
-        "win_message" = win_message,
-        "lose_message" = lose_message,
-        }
+        # win_message = self.request.get()
+        # lose_message = self.request.get()
+        #
+        # template_vars = {
+        # "win_message" : win_message,
+        # "lose_message" : lose_message,
+        # }
 
         template=jinja_current_directory.get_template('/templates/results.html')
         self.response.write(template.render())
