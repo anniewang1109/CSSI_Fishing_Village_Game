@@ -27,47 +27,6 @@ function clear_farmer(x,y){
   utx.clearRect(0,0,1440,900);
 }
 
-<<<<<<< Updated upstream
-
-var firstFish = new Fish(2);
-var secondFish = new Fish(2);
-firstFish.xPos = 100;
-firstFish.yPos = 100;
-secondFish.xPos = 200;
-secondFish.yPos = 200;
-firstFish.nextX = 101;
-firstFish.nextY = 101;
-secondFish.nextX = 201;
-secondFish.nextY = 201;
-firstFish.speed = 100;
-var fishArr = {0 : firstFish, 1 : secondFish};
-var firstTimer = setInterval(function(){swim(0);}, firstFish.speed);
-var secondTimer = setInterval(function(){swim(1);}, secondFish.speed);
-//var fish = setInterval(swim, 100);
-var stop = setInterval(stopAllTimes, 10000);
-
-full_canvas()
-//var myVar = setInterval(moveFish, 1000);
-
-
-function stopAllTimes(){
-  clearInterval(firstTimer);
-  clearInterval(secondTimer);
-}
-
-
-
-function draw_fisher(x,y){
-  //let fisher_list = []
-  let img = new Image();
-  img.src = "/static/imgs/fisherman_left.png";
-  //fisher_list.push(img);
-  //for (let i = 0; len = fisher_list.length; i<len; i++ )
-  img.onload = function(){
-    ctx.drawImage(img,0,0,92,128,x,y,92,128);
-
-  }//}
-=======
 function swim(fish_index){
   fish = fishArr[fish_index][0];
   if(fish.state != 9){
@@ -77,7 +36,6 @@ function swim(fish_index){
     clearInterval(fishArr[fish_index][1]);
     clear_fish(fish.xPos,fish.yPos);
   }
->>>>>>> Stashed changes
 }
 //
 // function catchFish(fisher_index){
@@ -129,27 +87,32 @@ function makeFisherman(level, i){
 }
 
 dragFarmer = false;
+
+
+function drag(e){
+  clear_farmer(e.pageX,e.pageY);
+  draw_farmer("static/imgs/fisherman_right.png", e.pageX, e.pageY);
+  console.log("drag");
+}
+
+
 document.addEventListener("mousedown", function(e){
-  console.log("mousedonw: " + e.clientX + "  :  " +  e.clientY);
+  console.log("mousedown: " + e.clientX + "  :  " +  e.clientY);
   if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
     //clicked on the famer = true
     dragFarmer = true;
     console.log(dragFarmer);
-    document.addEventListener("mousemove", function(e){
-      clear_farmer(e.pageX,  e.pageY);
-      draw_farmer("static/imgs/fisherman_right.png", e.pageX, e.pageY);
-    });
+    document.addEventListener("mousemove", drag);
     document.addEventListener("mouseup", function(e){
       newFarmer = new Image();
       newFarmer.src = "static/imgs/fisherman_right.png";
       ctx.drawImage(newFarmer,e.pageX, e.pageY,46,128);
       dragFarmer = false;
-
-      // draw_farmer("static/imgs/fisherman_right.png", e.pageX, e.pageY);
-      console.log("mouseup: " + e.clientX + "  :  " +  e.clientY);
+      console.log(dragFarmer);
+      document.removeEventListener("mousemove", drag);
+      console.log("removed");
     });
   };
-  //document.getElementById("demo").innerHTML = e.clientX + " : " + e.clientY;
 });
 
 var levels = []

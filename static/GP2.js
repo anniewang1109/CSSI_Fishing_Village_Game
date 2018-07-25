@@ -103,6 +103,7 @@ function make_fisher(x,y,i){
   console.log(fisherArr.length);
 }
 
+<<<<<<< Updated upstream
 // dragFarmer = false;
 // document.addEventListener("mousedown", function(e){
 //   console.log("mousedonw: " + e.clientX + "  :  " +  e.clientY);
@@ -124,6 +125,29 @@ function make_fisher(x,y,i){
 //   };
 //
 // });
+=======
+dragFisher = false;
+
+function drag(e){
+  clear_fisher(e.pageX,e.pageY);
+  draw_fisher("static/imgs/fisherman_right.png", e.pageX, e.pageY);
+  console.log("drag");
+}
+
+document.addEventListener("mousedown", function(e){
+  if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
+    dragFisher = true;
+    document.addEventListener("mousemove", drag);
+    document.addEventListener("mouseup", function(e){
+      newfisher = new Image();
+      newfisher.src = "static/imgs/fisherman_right.png";
+      ctx.drawImage(newfisher,e.pageX, e.pageY,46,128);
+      dragFisher = false;
+      document.removeEventListener("mousemove", drag);
+    });
+  };
+});
+>>>>>>> Stashed changes
 
 var levels = []
 function getLevel(){
