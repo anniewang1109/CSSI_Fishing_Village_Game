@@ -1,5 +1,5 @@
 var ctx = document.getElementById('game-layer').getContext('2d');
-
+var utx = document.getElementById('ui-layer').getContext('2d');
 function full_canvas(){
   var canvas = document.getElementById("game-layer")
   let width = screen.innerWidth
@@ -13,8 +13,18 @@ function draw_fish(fish){
   ctx.drawImage(fish.images[fish.direction],fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
 }
 
+function draw_farmer(src,x,y){
+  newFarmer = new Image();
+  newFarmer.src = src;
+  utx.drawImage(newFarmer,x,y,46,128);
+}
+
 function clear_fish(x,y){
   ctx.clearRect(x,y,32,32);
+}
+
+function clear_farmer(x,y){
+  utx.clearRect(0,0,1440,900);
 }
 
 function swim(fish_index){
@@ -61,9 +71,22 @@ function makeFish(level, i){
   var newTimer = setInterval(function(){swim(i);}, newFish.speed);
   fishArr.push([newFish,newTimer]);
 }
-// document.addEventListener("click", function(e){
-//      document.getElementById("demo").innerHTML = e.clientX + " : " + e.clientY;
-// });
+
+dragFarmer = false;
+document.addEventListener("click", function(e){
+  console.log(e.clientX + "  :  " +  e.clientY);
+  if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
+    //clicked on the famer = true
+    dragFarmer = true;
+    console.log(dragFarmer);
+    document.addEventListener("mousemove", function(e){
+      clear_farmer(e.pageX,  e.pageY);
+      draw_farmer("static/imgs/fisherman_right.png", e.pageX, e.pageY);
+    });
+  }
+  //document.getElementById("demo").innerHTML = e.clientX + " : " + e.clientY;
+});
+
 var levels = []
 function getLevel(){
   levels = document.getElementById('levelData').innerHTML;//.split("_");
