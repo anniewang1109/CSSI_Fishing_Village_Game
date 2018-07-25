@@ -13,17 +13,20 @@ function draw_fish(fish){
   ctx.drawImage(fish.images[fish.direction],fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
 }
 
-function draw_farmer(src,x,y){
-  newFarmer = new Image();
-  newFarmer.src = src;
-  utx.drawImage(newFarmer,x,y,46,128);
+function draw_fisher(src,x,y){
+  newFisher = new Image();
+  newFisher.src = src;
+  newFisher.onload = function(){
+    utx.drawImage(newFisher,x,y,92,256);
+  }
+  console.log(newFisher);
 }
 
 function clear_fish(x,y){
   ctx.clearRect(x,y,32,32);
 }
 
-function clear_farmer(x,y){
+function clear_fisher(x,y){
   utx.clearRect(0,0,1440,900);
 }
 
@@ -38,10 +41,12 @@ function swim(fish_index){
   }
 }
 
-function catchFish(fisher_index){
+function catch_fish(fisher_index){
     fisher = fisherArr[fisher_index];
-    for each(fish in fishArr){
-      if(Math.pow())
+    for(var i = 0; i<fishArr.length; i++){
+        if(Math.pow(Math.pow(fisher.xPos - fishArr[i].xPos,2) + Math.pow(fisher.yPos - fishArr[i].yPos,2),.5) < 50){
+            console.log("Fish Caught");
+        }
     }
 }
 
@@ -60,13 +65,14 @@ function readLevel(){
           fishCount--;
           break;
         case "1":
-          makeFish(1,fishCount);
+          make_fish(1,fishCount);
+          catch_fish(0);
           break;
         case "2":
-          makeFish(2,fishCount);
+          make_fish(2,fishCount);
           break;
         case "3":
-          makeFish(3,fishCount);
+          make_fish(3,fishCount);
           break;
       }
       fishCount++;
@@ -75,14 +81,15 @@ function readLevel(){
     }
 }
 
-function makeFish(level, i){
+function make_fish(level, i){
   newFish = new Fish(level);
-  var newTimer = setInterval(function(){swim(i);}, newFish.speed);
+  newTimer = setInterval(function(){swim(i);}, newFish.speed);
   fishArr.push([newFish,newTimer]);
 }
 
-function makeFisherman(level, i){
-  var newTimer = setInterval(function(){catchFish(i);}, 50);
+function make_fisher(x,y,i){
+  newFisher = new Fisher(x,y);
+  newTimer = setInterval(function(){catch_fish(i);}, 50);
   fisherArr.push([newFisher,newTimer]);
 }
 
@@ -108,6 +115,8 @@ function getLevel(){
 
 full_canvas()
 getLevel();
+//make_fisher(500,500,0);
+draw_fisher("static/imgs/fisherman_right.png",100,500);
 
 level = levels.split("_")[0];
 readLevel();

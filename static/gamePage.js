@@ -67,7 +67,7 @@ function draw_fisher(x,y){
   //fisher_list.push(img);
   //for (let i = 0; len = fisher_list.length; i<len; i++ )
   img.onload = function(){
-    ctx.drawImage(img,x,y,92,128);
+    ctx.drawImage(img,0,0,92,128,x,y,92,128);
 
   }//}
 }
