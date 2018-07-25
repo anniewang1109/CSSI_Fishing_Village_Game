@@ -45,7 +45,7 @@ class StartGameHandler(webapp2.RequestHandler):
             nickname = user.nickname()
             template_vars = {
                 "nickname": nickname,
-                "levelData": "2||2|||2||||1||1|||1|||||||||||2||2|||2||||2||||1||1||1|||1|||1|||||1||1",
+                "levelData": "2||2|||1||||3|1|||1||||3|||||3||2||3|||2||||2||||1||3||1|||1|||1||3|||2||1",
             }
             template = jinja_current_directory.get_template('/templates/gamePage.html')
             self.response.write(template.render(template_vars))

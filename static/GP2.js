@@ -13,11 +13,15 @@ function draw_fish(fish){
   ctx.drawImage(fish.images[fish.direction],fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
 }
 
-function draw_fisher(src,x,y){
+function draw_fisher(src,x,y,UorC){
   newFisher = new Image();
   newFisher.src = src;
   newFisher.onload = function(){
-    ctx.drawImage(newFisher,0,0,46,128,x,y,46,128);
+    if(UorC){
+      utx.drawImage(newFisher,0,0,46,128,x,y,46,128);
+    }else{
+      ctx.drawImage(newFisher,0,0,46,128,x,y,46,128);
+    }
   }
   console.log(newFisher);
 }
@@ -53,7 +57,6 @@ function catch_fish(fisher_index){
           //console.log("Fisher: " + fisher.xPos + " - " + fisher.yPos + " | " + "Fish: "+ fishArr[i][0].xPos + " - " + fishArr[i][0].yPos);
           if(Math.pow(Math.pow(fisher.xPos - fishArr[i][0].xPos,2) + Math.pow(fisher.yPos - fishArr[i][0].yPos,2),.5) < 50){
               fishArr[i][0].setCaught();
-              fishArr[i][1] = setInterval(function(){swim(i);}, fishArr[i][0].speed);
               break;
           }
         }
@@ -93,7 +96,7 @@ function readLevel(){
 
 function make_fish(level, i){
   newFish = new Fish(level);
-  newTimer = setInterval(function(){swim(i);}, newFish.speed);
+  newTimer = setInterval(function(){swim(i);}, newFish.timeSetting);
   fishArr.push([newFish,newTimer]);
 }
 
@@ -104,27 +107,29 @@ function make_fisher(x,y,i){
   console.log(fisherArr.length);
 }
 
-// dragFarmer = false;
-// document.addEventListener("mousedown", function(e){
-//   console.log("mousedonw: " + e.clientX + "  :  " +  e.clientY);
-//   if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
-//     //clicked on the famer = true
-//     dragFarmer = true;
-//     console.log(dragFarmer);
-//     document.addEventListener("mousemove", function(e){
-//       clear_farmer(e.pageX,  e.pageY);
-//       draw_farmer("static/imgs/fisherman_right.png", e.pageX, e.pageY);
-//     });
-//     document.addEventListener("mouseup", function(e){
-//       newFarmer = new Image();
-//       newFarmer.src = "static/imgs/fisherman_right.png";
-//       ctx.drawImage(newFarmer,e.pageX, e.pageY,46,128);
-//       dragFarmer = false;
-//       console.log("mouseup: " + e.clientX + "  :  " +  e.clientY);
-//     });
-//   };
-//
-// });
+dragFisher = false;
+
+function drag(e){
+  clear_fisher(e.pageX,e.pageY);
+  draw_fisher("static/imgs/fisherman_right.png", e.pageX, e.pageY, true);
+  console.log("drag");
+}
+
+function mouseUp(e){
+  //only do this if not in river
+  draw_fisher("static/imgs/fisherman_right.png",e.pageX, e.pageY, false);
+  dragFisher = false;
+  document.removeEventListener("mousemove", drag);
+  document.removeEventListener("mouseup", mouseUp);
+}
+
+document.addEventListener("mousedown", function(e){
+  if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
+    dragFisher = true;
+    document.addEventListener("mousemove", drag);
+    document.addEventListener("mouseup", mouseUp);
+  };
+});
 
 var levels = []
 function getLevel(){
@@ -134,7 +139,7 @@ function getLevel(){
 full_canvas()
 getLevel();
 make_fisher(200,500,0);
-draw_fisher("static/imgs/fisherman_right.png",200,500);
+//draw_fisher("static/imgs/fisherman_right.png",200,500);
 
 level = levels.split("_")[0];
 readLevel();
