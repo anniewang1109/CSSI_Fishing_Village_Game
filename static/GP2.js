@@ -38,8 +38,16 @@ function swim(fish_index){
   }
 }
 
+function catchFish(fisher_index){
+    fisher = fisherArr[fisher_index];
+    for each(fish in fishArr){
+      if(Math.pow())
+    }
+}
+
 var fishArr = [];
-var level = ""
+var fisherArr = [];
+var level = "";
 var currentIndex = 0;
 var currentLevel = 0;
 var fishCount = 0;
@@ -66,26 +74,32 @@ function readLevel(){
       wait = setInterval(readLevel, 1000);
     }
 }
+
 function makeFish(level, i){
   newFish = new Fish(level);
   var newTimer = setInterval(function(){swim(i);}, newFish.speed);
   fishArr.push([newFish,newTimer]);
 }
 
-dragFarmer = false;
-document.addEventListener("click", function(e){
-  console.log(e.clientX + "  :  " +  e.clientY);
-  if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
-    //clicked on the famer = true
-    dragFarmer = true;
-    console.log(dragFarmer);
-    document.addEventListener("mousemove", function(e){
-      clear_farmer(e.pageX,  e.pageY);
-      draw_farmer("static/imgs/fisherman_right.png", e.pageX, e.pageY);
-    });
-  }
-  //document.getElementById("demo").innerHTML = e.clientX + " : " + e.clientY;
-});
+function makeFisherman(level, i){
+  var newTimer = setInterval(function(){catchFish(i);}, 50);
+  fisherArr.push([newFisher,newTimer]);
+}
+
+// dragFarmer = false;
+// document.addEventListener("click", function(e){
+//   console.log(e.clientX + "  :  " +  e.clientY);
+//   if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
+//     //clicked on the famer = true
+//     dragFarmer = true;
+//     console.log(dragFarmer);
+//     document.addEventListener("mousemove", function(e){
+//       clear_farmer(e.pageX,  e.pageY);
+//       draw_farmer("static/imgs/fisherman_right.png", e.pageX, e.pageY);
+//     });
+//   }
+//   //document.getElementById("demo").innerHTML = e.clientX + " : " + e.clientY;
+// });
 
 var levels = []
 function getLevel(){

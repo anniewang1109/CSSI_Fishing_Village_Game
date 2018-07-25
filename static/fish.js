@@ -108,13 +108,13 @@ class Fish{
   setFishSpeed(){
     switch (this.strength) {
       case 1:
-        this.speed = 200; //fix speed eventually
+        this.speed = 120; //fix speed eventually
         break;
       case 2:
         this.speed = 100; //fix speed eventually
         break;
       case 3:
-        this.speed = 50; //fix speed eventually
+        this.speed = 80; //fix speed eventually
         break;
     }
   }
