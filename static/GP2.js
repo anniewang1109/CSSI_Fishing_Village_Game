@@ -93,20 +93,27 @@ function make_fisher(x,y,i){
   fisherArr.push([newFisher,newTimer]);
 }
 
-// dragFarmer = false;
-// document.addEventListener("click", function(e){
-//   console.log(e.clientX + "  :  " +  e.clientY);
-//   if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
-//     //clicked on the famer = true
-//     dragFarmer = true;
-//     console.log(dragFarmer);
-//     document.addEventListener("mousemove", function(e){
-//       clear_farmer(e.pageX,  e.pageY);
-//       draw_farmer("static/imgs/fisherman_right.png", e.pageX, e.pageY);
-//     });
-//   }
-//   //document.getElementById("demo").innerHTML = e.clientX + " : " + e.clientY;
-// });
+dragFarmer = false;
+document.addEventListener("mousedown", function(e){
+  console.log("mousedonw: " + e.clientX + "  :  " +  e.clientY);
+  if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
+    //clicked on the famer = true
+    dragFarmer = true;
+    console.log(dragFarmer);
+    document.addEventListener("mousemove", function(e){
+      clear_farmer(e.pageX,  e.pageY);
+      draw_farmer("static/imgs/fisherman_right.png", e.pageX, e.pageY);
+    });
+    document.addEventListener("mouseup", function(e){
+      newFarmer = new Image();
+      newFarmer.src = "static/imgs/fisherman_right.png";
+      ctx.drawImage(newFarmer,e.pageX, e.pageY,46,128);
+      dragFarmer = false;
+      console.log("mouseup: " + e.clientX + "  :  " +  e.clientY);
+    });
+  };
+
+});
 
 var levels = []
 function getLevel(){
