@@ -17,8 +17,8 @@ class Fish{
   moveFish(){
     switch(this.direction){
       case -1://init
-        this.xPos = 0;
-        this.yPos = 485;
+        this.xPos = -32; //+ (-randInt(20) + 10); // 10 off max
+        this.yPos = 485; //+ (-randInt(20) + 10); // 8 off max 
         this.direction = 0;
       case 0: //right
         this.xPos = this.xPos + 4;
@@ -35,25 +35,25 @@ class Fish{
     }
     switch(this.state){
       case 0:
-        if(this.xPos>355 && this.xPos<365){ //center at 355
+        if(this.xPos>355 && this.xPos<365){ //center at 356
           this.direction = 1;
           this.state++;
         }
         break;
       case 1:
-        if(this.yPos>265 && this.yPos<275){ //center at 275
+        if(this.yPos>265 && this.yPos<275){ //center at 273
           this.direction = 0;
           this.state++;
         }
         break;
       case 2:
-        if(this.xPos>560 && this.xPos<570){ //center at 560
+        if(this.xPos>560 && this.xPos<570){ //center at 564
          this.direction = 2;
          this.state++;
         }
         break;
       case 3:
-        if(this.yPos>605 && this.yPos<615){ //center at 605
+        if(this.yPos>605 && this.yPos<615){ //center at 609
          this.direction = 0;
          this.state++;
         }
@@ -65,19 +65,19 @@ class Fish{
         }
         break;
       case 5:
-        if(this.yPos>150 && this.yPos<160){ // center at 160
+        if(this.yPos>150 && this.yPos<160){ // center at 157
          this.direction = 0;
          this.state++;
         }
         break;
       case 6:
-        if(this.xPos>970 && this.xPos<980){ // center at 970
+        if(this.xPos>970 && this.xPos<980){ // center at 972
          this.direction = 2;
          this.state++;
         }
         break;
       case 7:
-        if(this.yPos>470 && this.yPos<480){ //
+        if(this.yPos>470 && this.yPos<480){ //center at 473
          this.direction = 0;
          this.state++;
         }
