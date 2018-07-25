@@ -55,6 +55,6 @@ class ResultsHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/game', StartGameHandler),
-    ('/win', WinHandler),
+    ('/results', ResultsHandler),
 
 ], debug=True)
