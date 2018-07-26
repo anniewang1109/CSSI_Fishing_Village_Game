@@ -4,7 +4,7 @@
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 100px;
   font-family: 'VT323', monospace;
   color: #fff;
   font-weight: bold;
@@ -40,7 +40,7 @@ p{
 }
 
 #title{
-  top: 33%;
+  top: 45%;
   text-shadow: 0px 0px 20px #7C9C9A;
 }
 
@@ -63,8 +63,8 @@ a{
   text-decoration: none;
   width: fit-content;
   line-height: 1;
-  color: white;
   font-size: 30px;
+
 }
 
 .button{
@@ -75,13 +75,15 @@ a{
   text-shadow:0px 0px 0px;
   border-radius: .7em;
   padding: 10px;
-  color: white;
+  color: black;
   font-weight: bold;
 }
 
-.button:active{
-  opacity: 1px;
+.button:hover{
+  opacity: 2em;
   background-color: #fff;
+  /* background-color: #e6e6e6; */
+
 }
 
 .bgimg {
