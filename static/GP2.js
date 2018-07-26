@@ -57,9 +57,9 @@ function draw_fisher(fisher,UorC){
   }else{
     clear_fisher(fisher);
     ctxF.drawImage(fisher.images[fisher.direction],fisher.currentFrame,0,46,128,fisher.xPos,fisher.yPos,46,128);
-    // ctxF.beginPath();
-    // ctxF.arc(fisher.catchX,fisher.catchY,100,0,2*Math.PI);
-    // ctxF.stroke();
+    ctxF.beginPath();
+    ctxF.arc(fisher.catchX ,fisher.catchY ,fisher.range,0,2*Math.PI);
+    ctxF.stroke();
   }
 }
 
@@ -116,28 +116,26 @@ function catch_fish(fisher_index){
           if(fishArr[i][0] != null){
             //console.log(getRadius(fishArr[i][0],fisher));
             if(getRadius(fishArr[i][0],fisher) < fisher.range){
-              //utx.beginPath();
-              //utx.moveTo(fisher.xPos + 23, fisher.yPos + 64);
-              //utx.lineTo(fishArr[i][0].xPos, fishArr[i][0].yPos);
-              //utx.stroke();
+              utx.beginPath();
+              utx.moveTo(fisher.catchX, fisher.catchY);
+              utx.lineTo(fishArr[i][0].catchX, fishArr[i][0].catchY);
+              utx.stroke();
+              //console.log(absSlope(fishArr[i][0],fisher));
+
                 if(absSlope(fishArr[i][0],fisher) >= (window.innerHeight)/(window.innerWidth)){
                     if(fish.catchY > fisher.catchY){
                         fisher.direction = 0;
-                        console.log("front");
                     }else{
                         fisher.direction = 2;
-                        console.log("back");
                     }
                 }else{
                     if(fish.catchX > fisher.catchX){
                         fisher.direction = 1;
-                        console.log("left");
                     }else{
                         fisher.direction = 3;
-                        console.log("right");
                     }
                 }
-                if(Math.random()*10<3){
+                if(Math.random()*100<5){
                   fishArr[i][0].setCaught();
                 }
                 fisher.currentFrame = 46;
@@ -260,7 +258,7 @@ function getLevel(){
   console.log(levels);
 }
 
-
+console.log((window.innerHeight)/(window.innerWidth));
 background.backgroundSize = window.innerWidth + "px " + window.innerHeight + "px;";
 
 ctxF.fillRect(0,800,46,128);

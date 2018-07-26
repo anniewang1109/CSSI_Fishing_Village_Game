@@ -6,7 +6,7 @@ class Fisher{
     this.yPos = y;
     this.direction = 0;
     this.currentFrame = 0;
-    this.range = 100;
+    this.range = 150;
     this.images = [];
     for(let i = 0; i<4; i++){
       this.images.push(new Image());
