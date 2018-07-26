@@ -1,7 +1,11 @@
 body{
   width: 1440px;
   height: 900px;
+<<<<<<< HEAD
   overflow: hidden; 
+=======
+  overflow: hidden;
+>>>>>>> 933e75131ce99c795aaebefd15dc0d8905a44979
 }
 
 #background-layer{
