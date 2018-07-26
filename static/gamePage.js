@@ -26,11 +26,10 @@ function draw_fisher(src,x,y,UorC){
   console.log(newFisher);
 }
 
-function draw_button(x,y,width,height){
-  ctx.beginPath();
-  ctx.rect(x,y,width,height)
-  ctx.fillStyle = "#8ED6FF";
-  ctx.fill()
+function draw_button(src,x,y,width,height){
+  newButton = new Image();
+  newButton.src = src;
+  newButton.onload = ctx.drawImage()
 }
 
 draw_button(0,872,46,26);
