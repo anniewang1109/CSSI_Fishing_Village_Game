@@ -1,5 +1,4 @@
 class Fish{
-
   constructor(setLevel){
     this.state = 0;
     this.direction = -1;

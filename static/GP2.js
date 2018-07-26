@@ -3,6 +3,7 @@ var ctxR = document.getElementById('game-layerR').getContext('2d');
 var ctxB = document.getElementById('game-layerB').getContext('2d');
 var ctxY = document.getElementById('game-layerY').getContext('2d');
 var utx = document.getElementById('game-layerU').getContext('2d');
+var background = document.getElementById('background-layer');
 var fishArr = [];
 var fisherArr = [];
 var level = "";
@@ -18,6 +19,7 @@ var availableFishers = 2;
 var done = true;
 var isDone;
 var levelNum = 0;
+
 // function full_canvas(){
 //   var canvas = document.getElementById("game-layerF")
 //   let width = screen.innerWidth
@@ -208,7 +210,9 @@ function levelComplete(){
   }
   if(done){
     fishArr = [];
+    fishCount = 0;
     clearInterval(isDone);
+
     console.log("Level is over");
   }
 }
@@ -221,12 +225,16 @@ document.addEventListener("mousedown", function(e){
       document.addEventListener("mouseup", mouseUp);
     }
   }
-  if((e.pageX>500 && e.pageX <592) &&(e.pageY>800 && e.pageY<892)){
+  if((e.screenX>340 && e.screenX <400) &&(e.screenY>810 && e.screenY<890)){
+    console.log("button clicked");
     if(done == true){
-        level = levels.split("_")[levelNum++];
-        console.log("Level has started");
-        done = false;
-        readLevel();
+      if (levelNum <  levels.length) {
+          done = false;
+          level = levels[levelNum++];
+          console.log("Level has started " + levelNum);
+          done = false;
+          readLevel();
+      }
     }
   }
 });
@@ -238,7 +246,13 @@ function getLevel(){
 }
 
 
+background.backgroundSize = window.innerWidth + "px " + window.innerHeight + "px;";
+
 ctxF.fillRect(0,800,46,128);
 ctxF.fillRect(500,800,92,92);
 //full_canvas();
 getLevel();
+level = levels[0];
+console.log("Level has started");
+done = false;
+readLevel();
