@@ -32,6 +32,11 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_current_directory.get_template('/templates/welcomePage.html')
         self.response.write(template.render(template_vars))
 
+class BackstoryHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_current_directory.get_template('/templates/backstory.html')
+        self.response.write(template.render())
+
 class GameHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -64,6 +69,7 @@ class ResultsHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
+    ('/backstory', BackstoryHandler)
     ('/game', GameHandler),
     ('/results', ResultsHandler),
 
