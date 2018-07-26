@@ -18,15 +18,18 @@ function full_canvas(){
 }
 
 function draw_fish(fish){
+  clear_fish(fish);
   fish.moveFish()
   ctx.drawImage(fish.images[fish.direction],fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
 }
 
 function draw_fisher(fisher,UorC){
   if(UorC){
+    clear_fisher()
     utx.drawImage(fisher.images[fisher.direction],0,0,46,128,fisher.xPos,fisher.yPos,46,128);
   }else{
-    ctx.drawImage(fisher.images[fisher.direction],0,0,46,128,fisher.xPos,fisher.yPos,46,128);
+    clear_fisher(fisher);
+    ctx.drawImage(fisher.images[fisher.direction],fisher.currentFrame,0,46,128,fisher.xPos,fisher.yPos,46,128);
     //ctx.beginPath();
     //ctx.arc(fisher.xPos,fisher.yPos,100,0,2*Math.PI);
     //ctx.stroke();
@@ -34,12 +37,16 @@ function draw_fisher(fisher,UorC){
 }
 
 
-function clear_fish(x,y){
-  ctx.clearRect(x,y,32,32);
+function clear_fish(fish){
+  ctx.clearRect(fish.xPos,fish.yPos,32,32);
 }
 
-function clear_fisher(){
-  utx.clearRect(0,0,1440,900);
+function clear_fisher(fisher){
+  try{
+    ctx.clearRect(fisher.xPos, fisher.yPos, 46, 128);
+  }catch(error){
+    utx.clearRect(0,0,1440,900);
+  }
 }
 
 function swim(fish_index){
@@ -47,11 +54,10 @@ function swim(fish_index){
     fish = fishArr[fish_index][0];
     if(fish != null){
       if(fish.state != 9){
-        clear_fish(fish.xPos,fish.yPos);
         draw_fish(fish);
       }else{
         clearInterval(fishArr[fish_index][1]);
-        clear_fish(fish.xPos,fish.yPos);
+        clear_fish(fish);
         fishArr[fish_index][0] = null;
       }
     }
@@ -59,17 +65,49 @@ function swim(fish_index){
 }
 
 function catch_fish(fisher_index){
-    fisher = fisherArr[fisher_index][0];
-
-    for(var i = 0; i<fishArr.length; i++){
-        if(fishArr[i][0] != null){
-          if(Math.pow(Math.pow(fisher.xPos - fishArr[i][0].xPos,2) + Math.pow(fisher.yPos - fishArr[i][0].yPos,2),.5) < fisher.range){
-              fishArr[i][0].setCaught();
-              console.log(fisher_index + " has caught a fish");
-              break;
+    if(fisherArr.length>0){
+      if(fisherArr[fisher_index][0].currentFrame == 46){
+        fisher.currentFrame = 0;
+        draw_fisher(fisher,false);
+      }
+      fisher = fisherArr[fisher_index][0];
+      for(var i = 0; i<fishArr.length; i++){
+          if(fishArr[i][0] != null){
+            if(getRadius(fishArr[i][0],fisher) < fisher.range){
+                if(absSlope(fishArr[i][0],fisher) > 1){
+                    if(fish.yPos > fisher.yPos){
+                        fisher.direction = 2;
+                    }else{
+                        fisher.direction = 0;
+                    }
+                }else{
+                    if(fish.xPos > fisher. xPos){
+                        fisher.direction = 1;
+                    }else{
+                        fisher.direction = 3;
+                    }
+                }
+                if(Math.random()*10<3){
+                  fishArr[i][0].setCaught();
+                  console.log(fisher_index + " has caught a fish");
+                }else{
+                  console.log(fisher_index + " has missed");
+                }
+                fisher.currentFrame = 46;
+                draw_fisher(fisher,false);
+                break;
+            }
           }
-        }
+      }
     }
+}
+
+function getRadius(fish, fisher){
+  return Math.pow(Math.pow(fisher.xPos - fish.xPos,2) + Math.pow(fisher.yPos - fish.yPos,2),.5);
+}
+
+function absSlope(fish, fisher){
+  return Math.abs((fish.yPos - fisher.yPos)/(fish.xPos - fisher.xPos));
 }
 
 function readLevel(){
@@ -103,7 +141,7 @@ function make_fish(level, i){
 }
 
 function make_fisher(fisher,i){
-  newTimer = setInterval(function(){catch_fish(i);}, 1000);
+  newTimer = setInterval(()=>{catch_fish(i);}, 500);
   fisherArr.push([fisher,newTimer]);
 }
 
@@ -117,6 +155,7 @@ function drag(e){
 var newFisher;
 function mouseUp(e){
   //only do this if not in river
+  clear_fisher();
   draw_fisher(newFisher,0, false);
   document.removeEventListener("mousemove", drag);
   document.removeEventListener("mouseup", mouseUp);
@@ -124,8 +163,8 @@ function mouseUp(e){
 }
 
 document.addEventListener("mousedown", function(e){
-  newFisher = new Fisher(e.pageX,e.pageY);
   if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
+    newFisher = new Fisher(e.pageX,e.pageY);
     document.addEventListener("mousemove", drag);
     document.addEventListener("mouseup", mouseUp);
   };
@@ -138,6 +177,6 @@ function getLevel(){
 
 full_canvas()
 getLevel();
-console.log(levels.split("_"));
+//console.log(levels.split("_"));
 level = levels.split("_")[0];
 readLevel();

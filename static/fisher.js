@@ -3,9 +3,10 @@ class Fisher{
     this.xPos = x;
     this.yPos = y;
     this.direction = 0;
-    this.range = 100;
+    this.currentFrame = 0;
+    this.range = 50;
     this.images = [];
-    for(let i = 0; i<3; i++){
+    for(let i = 0; i<4; i++){
       this.images.push(new Image());
       this.images[i].src = "/static/imgs/" + this.getSS(i) + ".png";
     }
