@@ -32,7 +32,7 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_current_directory.get_template('/templates/welcomePage.html')
         self.response.write(template.render(template_vars))
 
-class StartGameHandler(webapp2.RequestHandler):
+class GameHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
 
@@ -40,12 +40,14 @@ class StartGameHandler(webapp2.RequestHandler):
             nickname = user.nickname()
             template_vars = {
                 "nickname": nickname,
-                "levelData": "2||3|||1||||3|1|||1||||3|||||3||2||3|||2||||2||||1||3||1|||1|||1||3|||2||1",
+                "levelData": "2||3||1|||1|2|3|||1|||2|||_1||2|||3|||1||2|3||||3|||2|||3",
             }
             template = jinja_current_directory.get_template('/templates/gamePage.html')
             self.response.write(template.render(template_vars))
         else:
             self.redirect('/')
+    def post(self):
+        self.request.get('')
 
 class ResultsHandler(webapp2.RequestHandler):
     def get(self):
@@ -62,7 +64,7 @@ class ResultsHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/game', StartGameHandler),
+    ('/game', GameHandler),
     ('/results', ResultsHandler),
 
 ], debug=True)

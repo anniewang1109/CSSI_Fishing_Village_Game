@@ -110,16 +110,16 @@ class Fish{
   setFishSpeed(){
     switch (this.strength) {
       case 1:
-        this.timeSetting = 80; //fix speed eventually
-        this.speed = 1;
+        this.timeSetting = 110; //fix speed eventually
+        this.speed = 3;
         break;
       case 2:
-        this.timeSetting = 60; //fix speed eventually
-        this.speed = 2;
+        this.timeSetting = 90; //fix speed eventually
+        this.speed = 4;
         break;
       case 3:
-        this.timeSetting = 40; //fix speed eventually
-        this.speed = 3;
+        this.timeSetting = 70; //fix speed eventually
+        this.speed = 5;
         break;
     }
   }

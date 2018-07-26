@@ -16,17 +16,7 @@
   height: 100%;
   position: absolute;
 }
-
-#ui-layer {
-  z-index: 3;
-  margin:0;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-#game-layer {
+#game-layerR{
   z-index: 2;
   margin:0;
   left: 0px;
@@ -35,10 +25,45 @@
   height: 100%;
   position: absolute;
 }
-
+#game-layerB{
+  z-index: 3;
+  margin:0;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+#game-layerY{
+  z-index: 4;
+  margin:0;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+#game-layerF{
+  z-index: 5;
+  margin:0;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+#game-layerU{
+  z-index: 6;
+  margin:0;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
 #scoreTag{
   size = 30px;
-  z-index: 4;
+  z-index: 7;
   position:absolute;
   font-family: 'VT323', monospace;
   left: 5%;

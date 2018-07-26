@@ -1,5 +1,8 @@
-var ctx = document.getElementById('game-layer').getContext('2d');
-var utx = document.getElementById('ui-layer').getContext('2d');
+var ctxF = document.getElementById('game-layerF').getContext('2d');
+var ctxR = document.getElementById('game-layerR').getContext('2d');
+var ctxB = document.getElementById('game-layerB').getContext('2d');
+var ctxY = document.getElementById('game-layerY').getContext('2d');
+var utx = document.getElementById('game-layerU').getContext('2d');
 var fishArr = [];
 var fisherArr = [];
 var level = "";
@@ -12,20 +15,31 @@ var newFisher;
 var score = 0;
 var population = 10;
 var availableFishers = 2;
-var done = false;
-
-function full_canvas(){
-  var canvas = document.getElementById("game-layer")
-  let width = screen.innerWidth
-  let height = screen.innerHeight
-  canvas.style.width = width + "px";
-  canvas.style.height = height + "px";
-}
+var done = true;
+var isDone;
+var levelNum = 0;
+// function full_canvas(){
+//   var canvas = document.getElementById("game-layerF")
+//   let width = screen.innerWidth
+//   let height = screen.innerHeight
+//   canvas.style.width = width + "px";
+//   canvas.style.height = height + "px";
+// }
 
 function draw_fish(fish){
   clear_fish(fish);
   fish.moveFish()
-  ctx.drawImage(fish.images[fish.direction],fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
+  switch(fish.level){
+    case 1:
+      ctxR.drawImage(fish.images[fish.direction],fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
+      break;
+    case 2:
+      ctxB.drawImage(fish.images[fish.direction],fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
+      break;
+    case 3:
+      ctxY.drawImage(fish.images[fish.direction],fish.currentFrame * 32, 32, 32, 32, fish.xPos, fish.yPos, 32, 32);
+      break;
+  }
 }
 
 function draw_fisher(fisher,UorC){
@@ -34,7 +48,7 @@ function draw_fisher(fisher,UorC){
     utx.drawImage(fisher.images[fisher.direction],0,0,46,128,fisher.xPos,fisher.yPos,46,128);
   }else{
     clear_fisher(fisher);
-    ctx.drawImage(fisher.images[fisher.direction],fisher.currentFrame,0,46,128,fisher.xPos,fisher.yPos,46,128);
+    ctxF.drawImage(fisher.images[fisher.direction],fisher.currentFrame,0,46,128,fisher.xPos,fisher.yPos,46,128);
     //ctx.beginPath();
     //ctx.arc(fisher.xPos,fisher.yPos,100,0,2*Math.PI);
     //ctx.stroke();
@@ -43,12 +57,22 @@ function draw_fisher(fisher,UorC){
 
 
 function clear_fish(fish){
-  ctx.clearRect(fish.xPos,fish.yPos,32,32);
+  switch (fish.level) {
+    case 1:
+      ctxR.clearRect(fish.xPos,fish.yPos,32,32);
+      break;
+    case 2:
+      ctxB.clearRect(fish.xPos,fish.yPos,32,32);
+      break;
+    case 3:
+      ctxY.clearRect(fish.xPos,fish.yPos,32,32);
+      break;
+  }
 }
 
 function clear_fisher(fisher){
   try{
-    ctx.clearRect(fisher.xPos, fisher.yPos, 46, 128);
+    ctxF.clearRect(fisher.xPos, fisher.yPos, 46, 128);
   }catch(error){
     utx.clearRect(0,0,1440,900);
   }
@@ -197,23 +221,24 @@ document.addEventListener("mousedown", function(e){
       document.addEventListener("mouseup", mouseUp);
     }
   }
-  //if((e.pageX>0 && e.pageX <46) &&(e.pageY>800 && e.pageY<912)){
-
-  //}
+  if((e.pageX>500 && e.pageX <592) &&(e.pageY>800 && e.pageY<892)){
+    if(done == true){
+        level = levels.split("_")[levelNum++];
+        console.log("Level has started");
+        done = false;
+        readLevel();
+    }
+  }
 });
 
 var levels = []
 function getLevel(){
-  levels = document.getElementById('levelData').innerHTML;//.split("_");
+  levels = document.getElementById('levelData').innerHTML.split("_");
+  console.log(levels);
 }
 
 
-ctx.fillRect(0,800,46,128);
-full_canvas()
+ctxF.fillRect(0,800,46,128);
+ctxF.fillRect(500,800,92,92);
+//full_canvas();
 getLevel();
-//console.log(levels.split("_"));
-level = levels.split("_")[0];
-console.log("Level has started");
-done = false;
-readLevel();
-var isDone;
