@@ -8,6 +8,8 @@ var currentFisherIndex = 0;
 var currentLevel = 0;
 var fishCount = 0;
 var wait;
+var newFisher;
+var score = 0;
 
 function full_canvas(){
   var canvas = document.getElementById("game-layer")
@@ -56,6 +58,8 @@ function swim(fish_index){
       if(fish.state != 9){
         draw_fish(fish);
       }else{
+        score += fish.level;
+        document.getElementById("scoreTag").innerHTML = "Score: "  + score;
         clearInterval(fishArr[fish_index][1]);
         clear_fish(fish);
         fishArr[fish_index][0] = null;
@@ -76,9 +80,9 @@ function catch_fish(fisher_index){
             if(getRadius(fishArr[i][0],fisher) < fisher.range){
                 if(absSlope(fishArr[i][0],fisher) > 1){
                     if(fish.yPos > fisher.yPos){
-                        fisher.direction = 2;
-                    }else{
                         fisher.direction = 0;
+                    }else{
+                        fisher.direction = 2;
                     }
                 }else{
                     if(fish.xPos > fisher. xPos){
@@ -152,7 +156,6 @@ function drag(e){
   draw_fisher(newFisher, true);
 }
 
-var newFisher;
 function mouseUp(e){
   //only do this if not in river
   clear_fisher();
@@ -163,12 +166,17 @@ function mouseUp(e){
   console.log(currentFisherIndex);
 }
 
+
+
 document.addEventListener("mousedown", function(e){
-  if((e.clientX>0 && e.clientX <46) &&(e.clientY>800 && e.clientY<912)){
+  if((e.pageX>0 && e.pageX <46) &&(e.pageY>740 && e.pageY<825)){
     newFisher = new Fisher(e.pageX,e.pageY);
     document.addEventListener("mousemove", drag);
     document.addEventListener("mouseup", mouseUp);
-  };
+  }
+  //if((e.pageX>0 && e.pageX <46) &&(e.pageY>800 && e.pageY<912)){
+
+  //}
 });
 
 var levels = []
@@ -176,6 +184,8 @@ function getLevel(){
   levels = document.getElementById('levelData').innerHTML;//.split("_");
 }
 
+
+ctx.fillRect(0,800,46,128);
 full_canvas()
 getLevel();
 //console.log(levels.split("_"));

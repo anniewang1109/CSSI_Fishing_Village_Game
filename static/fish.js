@@ -4,6 +4,7 @@ class Fish{
     this.state = 0;
     this.direction = -1;
     this.strength = setLevel;
+    this.level = setLevel;
     this.setFishSpeed();
     this.moveFish();
     this.currentFrame = 0;
