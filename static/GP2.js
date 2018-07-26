@@ -160,6 +160,7 @@ function mouseUp(e){
   document.removeEventListener("mousemove", drag);
   document.removeEventListener("mouseup", mouseUp);
   make_fisher(newFisher, currentFisherIndex++);
+  console.log(currentFisherIndex);
 }
 
 document.addEventListener("mousedown", function(e){
