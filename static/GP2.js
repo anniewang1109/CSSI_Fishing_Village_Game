@@ -10,6 +10,9 @@ var fishCount = 0;
 var wait;
 var newFisher;
 var score = 0;
+var population = 10;
+var availableFishers = 2;
+var done = false;
 
 function full_canvas(){
   var canvas = document.getElementById("game-layer")
@@ -59,7 +62,7 @@ function swim(fish_index){
         draw_fish(fish);
       }else{
         score += fish.level;
-        document.getElementById("scoreTag").innerHTML = "Score: "  + score;
+        refreshPage();
         clearInterval(fishArr[fish_index][1]);
         clear_fish(fish);
         fishArr[fish_index][0] = null;
@@ -93,9 +96,6 @@ function catch_fish(fisher_index){
                 }
                 if(Math.random()*10<3){
                   fishArr[i][0].setCaught();
-                  console.log(fisher_index + " has caught a fish");
-                }else{
-                  console.log(fisher_index + " has missed");
                 }
                 fisher.currentFrame = 46;
                 draw_fisher(fisher,false);
@@ -135,6 +135,8 @@ function readLevel(){
       fishCount++;
       currentFishIndex++;
       wait = setInterval(readLevel, 1000);
+    }else{
+      isDone = setInterval(levelComplete, 10000);
     }
 }
 
@@ -163,16 +165,37 @@ function mouseUp(e){
   document.removeEventListener("mousemove", drag);
   document.removeEventListener("mouseup", mouseUp);
   make_fisher(newFisher, currentFisherIndex++);
+  availableFishers--;
+  refreshPage();
   console.log(currentFisherIndex);
 }
 
+function refreshPage(){
+  document.getElementById("scoreTag").innerHTML = "Score = " + score + "<br>Population = " + population + "<br>Avaliable Fishers = " + availableFishers;
+}
 
+function levelComplete(){
+  done = true;
+  for(var i = 0; i<fishArr.length; i++){
+    if(fishArr[i][0] != null){
+      done = false;
+      break;
+    }
+  }
+  if(done){
+    fishArr = [];
+    clearInterval(isDone);
+    console.log("Level is over");
+  }
+}
 
 document.addEventListener("mousedown", function(e){
   if((e.pageX>0 && e.pageX <46) &&(e.pageY>740 && e.pageY<825)){
-    newFisher = new Fisher(e.pageX,e.pageY);
-    document.addEventListener("mousemove", drag);
-    document.addEventListener("mouseup", mouseUp);
+    if(availableFishers > 0){
+      newFisher = new Fisher(e.pageX,e.pageY);
+      document.addEventListener("mousemove", drag);
+      document.addEventListener("mouseup", mouseUp);
+    }
   }
   //if((e.pageX>0 && e.pageX <46) &&(e.pageY>800 && e.pageY<912)){
 
@@ -190,4 +213,7 @@ full_canvas()
 getLevel();
 //console.log(levels.split("_"));
 level = levels.split("_")[0];
+console.log("Level has started");
+done = false;
 readLevel();
+var isDone;

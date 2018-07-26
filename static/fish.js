@@ -20,8 +20,8 @@ class Fish{
     this.currentFrame = (this.currentFrame + 1) % 4;
     switch(this.direction){
       case -1://init
-        this.offsetX = (-Math.random()*20 + 10);
-        this.offsetY = (-Math.random()*20 + 10);
+        this.offsetX = (-Math.random()*40 + 20);
+        this.offsetY = (-Math.random()*40 + 20);
         this.xPos = -32 + this.offsetX;
         this.yPos = 485 + this.offsetY;
         this.direction = 0;
@@ -110,16 +110,16 @@ class Fish{
   setFishSpeed(){
     switch (this.strength) {
       case 1:
-        this.timeSetting = 120; //fix speed eventually
-        this.speed = 3;
+        this.timeSetting = 80; //fix speed eventually
+        this.speed = 1;
         break;
       case 2:
-        this.timeSetting = 100; //fix speed eventually
-        this.speed = 4;
+        this.timeSetting = 60; //fix speed eventually
+        this.speed = 2;
         break;
       case 3:
-        this.timeSetting = 80; //fix speed eventually
-        this.speed = 5;
+        this.timeSetting = 40; //fix speed eventually
+        this.speed = 3;
         break;
     }
   }
