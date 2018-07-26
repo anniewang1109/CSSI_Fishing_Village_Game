@@ -24,7 +24,9 @@
 
       <div id="groupOfButtons">
         {%if user %}
-          <a id="startButton" class="button" href="/game">Start</a>
+          <form method="post">
+            <a id="startButton" class="button" href="/backstory">Start</a>
+          </form>
           <a id="signInButton" class="button" href="{{logout_url}}">Sign Out</a>
         {%else%}
           <a id="logInButton" class="button" href="{{login_url}}">Log In</a>

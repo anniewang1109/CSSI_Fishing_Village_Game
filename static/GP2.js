@@ -32,6 +32,8 @@ var scaleY = fisherCanvas.height / rect.height;
 //   canvas.style.height = height + "px";
 // }
 
+// document.querySelector("#nickname").
+
 function draw_fish(fish){
   clear_fish(fish);
   fish.moveFish()

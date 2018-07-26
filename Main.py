@@ -20,7 +20,7 @@ class MainHandler(webapp2.RequestHandler):
             nickname = user.nickname()
             logout_url = users.create_logout_url('/')
         else:
-            login_url = users.create_login_url('/game')
+            login_url = users.create_login_url('/backstory')
 
         template_vars = {
             "user": user,

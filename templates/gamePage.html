@@ -4,14 +4,22 @@
   <head>
     <title>Fishing Village</title>
     <link rel="stylesheet" href="static/gamePage.css"/>
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+  </head>
   </head>
 
   <body>
+    <p id="nickname">Welcome {{nickname}}</p >
 
-    <p id = "scoreTag">Score = 0<br>Population = 10<br>Avaliable Fishers = 2</p>
+    <p id="scoreTag">Score = 0<br>Population = 10<br>Avaliable Fishers = 2</p>
     <div hidden id="levelData">{{levelData}}</div>
     <!-- <canvas id="ui-layer" width="1440" height="900"></canvas> -->
-    <p hidden id="nickname">Welcome {{nickname}}</p hidden>
+
+    <div id="instructions">
+        <h1>Instructions</h1>
+        
+    </div>
+
     <canvas id="game-layerU" width="1440" height="900"></canvas>
     <canvas id="game-layerF" width="1440" height="900"></canvas>
     <canvas id="game-layerY" width="1440" height="900"></canvas>
@@ -23,8 +31,7 @@
     <script src="static/GP2.js"></script>
 
     <!-- <script src="static/gamePage.js"></script> -->
-    <!-- <canvas id="canvas" width="500" height="500" style = "background-color: red"></canvas>
-    <script src="static/test.js"></script> -->
+
   </body>
 
 </html>

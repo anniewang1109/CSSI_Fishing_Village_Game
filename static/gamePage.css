@@ -1,11 +1,17 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
 body{
   width: 1440px;
   height: 900px;
-<<<<<<< HEAD
-  overflow: hidden; 
-=======
   overflow: hidden;
->>>>>>> 933e75131ce99c795aaebefd15dc0d8905a44979
+  font-family: 'VT323', monospace;
+}
+
+p{
+  font-size: 20px;
 }
 
 #background-layer{
@@ -71,7 +77,15 @@ body{
   size = 30px;
   z-index: 7;
   position:absolute;
-  font-family: 'VT323', monospace;
   left: 5%;
   top: 90%
+}
+
+#nickname{
+  z-index: 8;
+  position: absolute;
+  left:3px;
+  top: 3px;
+  /* line-height: .5; */
+  /* margin: 0px; */
 }
