@@ -35,7 +35,8 @@ html {
 }
 
 p{
-  font-size: 20px;
+  font-size: 30px;
+  color: black;
 }
 
 #title{
@@ -54,7 +55,7 @@ p{
 
 #groupOfButtons{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 a{
@@ -67,14 +68,20 @@ a{
 }
 
 .button{
-  /* position: absolute; */
   padding: 8px;
-  background-color: #fff;
+  border-style: solid;
+  background-color: #e6e6e6;
   outline: none;
   text-shadow:0px 0px 0px;
-  /* outline-color: #7C9C9A; */
-  color: black;
+  border-radius: .7em;
+  padding: 10px;
+  color: white;
   font-weight: bold;
+}
+
+.button:active{
+  opacity: 1px;
+  background-color: #fff;
 }
 
 .bgimg {
