@@ -23,7 +23,7 @@ body {
   height: 100%;
   font-size: 60px;
   font-family: 'VT323', monospace;
-  text-shadow: 0px 0px 20px #7C9C9A;
+
   background-image: url("imgs/StartPageImage.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -41,21 +41,41 @@ p{
 
 #title{
   top: 33%;
+  text-shadow: 0px 0px 20px #7C9C9A;
+}
+
+#contribution{
+  display: block;
+  position: absolute;
+  padding-right: 5px;
+  font-size: 22px;
+  right: 0px;
+  bottom: 0px;
+}
+
+#groupOfButtons{
+  display: flex;
+  justify-content: space-between;
 }
 
 a{
+  display: block;
   text-decoration: none;
+  width: fit-content;
+  line-height: 1;
   color: white;
   font-size: 30px;
 }
 
 .button{
-  margin-left: 100px;
-  margin-right: 100px;
+  /* position: absolute; */
   padding: 8px;
   background-color: #fff;
   outline: none;
-  outline-color: #7C9C9A;
+  text-shadow:0px 0px 0px;
+  /* outline-color: #7C9C9A; */
+  color: black;
+  font-weight: bold;
 }
 
 .bgimg {
