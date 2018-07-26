@@ -1,5 +1,32 @@
 body {
   text-align: center;
-  color: red;
   font-family: 'VT323', monospace;
+}
+
+h1{
+  font-size: 70px;
+  color: red;
+  line-height: .5;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+  background-color: black;
+}
+
+a:hover{
+  background-color: #e6e6e6;
+}
+
+
+.button{
+  padding: 10px;
+  margin: 40px;
+  margin-bottom: 30px;
+}
+
+.result{
+  padding: 30px;
 }

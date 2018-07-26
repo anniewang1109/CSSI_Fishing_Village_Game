@@ -26,15 +26,6 @@ function draw_fisher(src,x,y,UorC){
   console.log(newFisher);
 }
 
-function draw_button(src,x,y,width,height){
-  newButton = new Image();
-  newButton.src = src;
-  newButton.onload = ctx.drawImage()
-}
-
-draw_button(0,872,46,26);
-draw_fisher("static/imgs/fisher_right.png",0 ,0, false);
-
 function clear_fish(x,y){
   ctx.clearRect(x,y,32,32);
 }
