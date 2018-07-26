@@ -69,7 +69,7 @@ class ResultsHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/backstory', BackstoryHandler)
+    ('/backstory', BackstoryHandler),
     ('/game', GameHandler),
     ('/results', ResultsHandler),
 
