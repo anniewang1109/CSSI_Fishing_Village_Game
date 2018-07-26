@@ -56,6 +56,7 @@ p{
 #groupOfButtons{
   display: flex;
   justify-content: space-evenly;
+  margin-top: 19px;
 }
 
 a{
@@ -80,9 +81,7 @@ a{
 }
 
 .button:hover{
-  opacity: 2em;
   background-color: #fff;
-  /* background-color: #e6e6e6; */
 
 }
 
