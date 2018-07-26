@@ -23,7 +23,6 @@ var levelNum = 0;
 var rect = fisherCanvas.getBoundingClientRect(); // abs. size of element
 var scaleX = fisherCanvas.width / rect.width;    // relationship bitmap vs. element for X
 var scaleY = fisherCanvas.height / rect.height;
-
 // function full_canvas(){
 //   var canvas = document.getElementById("game-layerF")
 //   let width = screen.innerWidth
@@ -57,9 +56,9 @@ function draw_fisher(fisher,UorC){
   }else{
     clear_fisher(fisher);
     ctxF.drawImage(fisher.images[fisher.direction],fisher.currentFrame,0,46,128,fisher.xPos,fisher.yPos,46,128);
-    ctxF.beginPath();
-    ctxF.arc(fisher.catchX ,fisher.catchY ,fisher.range,0,2*Math.PI);
-    ctxF.stroke();
+    // ctxF.beginPath();
+    // ctxF.arc(fisher.catchX ,fisher.catchY ,fisher.range,0,2*Math.PI);
+    // ctxF.stroke();
   }
 }
 
@@ -114,14 +113,14 @@ function catch_fish(fisher_index){
       fisher = fisherArr[fisher_index][0];
       for(var i = 0; i<fishArr.length; i++){
           if(fishArr[i][0] != null){
-            //console.log(getRadius(fishArr[i][0],fisher));
             if(getRadius(fishArr[i][0],fisher) < fisher.range){
-              utx.beginPath();
-              utx.moveTo(fisher.catchX, fisher.catchY);
-              utx.lineTo(fishArr[i][0].catchX, fishArr[i][0].catchY);
-              utx.stroke();
+              if()
+            }
+              // utx.beginPath();
+              // utx.moveTo(fisher.catchX, fisher.catchY);
+              // utx.lineTo(fishArr[i][0].catchX, fishArr[i][0].catchY);
+              // utx.stroke();
               //console.log(absSlope(fishArr[i][0],fisher));
-
                 if(absSlope(fishArr[i][0],fisher) >= (window.innerHeight)/(window.innerWidth)){
                     if(fish.catchY > fisher.catchY){
                         fisher.direction = 0;

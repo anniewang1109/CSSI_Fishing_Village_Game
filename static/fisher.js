@@ -7,6 +7,8 @@ class Fisher{
     this.direction = 0;
     this.currentFrame = 0;
     this.range = 150;
+    this.closestFishIndex;
+    this.minDistance = this.range;
     this.images = [];
     for(let i = 0; i<4; i++){
       this.images.push(new Image());
