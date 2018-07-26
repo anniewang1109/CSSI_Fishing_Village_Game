@@ -1,4 +1,5 @@
 var ctxF = document.getElementById('game-layerF').getContext('2d');
+var fisherCanvas = document.getElementById('game-layerF');
 var ctxR = document.getElementById('game-layerR').getContext('2d');
 var ctxB = document.getElementById('game-layerB').getContext('2d');
 var ctxY = document.getElementById('game-layerY').getContext('2d');
@@ -19,6 +20,9 @@ var availableFishers = 2;
 var done = true;
 var isDone;
 var levelNum = 0;
+var rect = fisherCanvas.getBoundingClientRect(); // abs. size of element
+var scaleX = fisherCanvas.width / rect.width;    // relationship bitmap vs. element for X
+var scaleY = fisherCanvas.height / rect.height;
 
 // function full_canvas(){
 //   var canvas = document.getElementById("game-layerF")
@@ -51,9 +55,9 @@ function draw_fisher(fisher,UorC){
   }else{
     clear_fisher(fisher);
     ctxF.drawImage(fisher.images[fisher.direction],fisher.currentFrame,0,46,128,fisher.xPos,fisher.yPos,46,128);
-    //ctx.beginPath();
-    //ctx.arc(fisher.xPos,fisher.yPos,100,0,2*Math.PI);
-    //ctx.stroke();
+    // ctxF.beginPath();
+    // ctxF.arc(fisher.catchX,fisher.catchY,100,0,2*Math.PI);
+    // ctxF.stroke();
   }
 }
 
@@ -84,10 +88,12 @@ function swim(fish_index){
   if(fishArr[fish_index] != null){
     fish = fishArr[fish_index][0];
     if(fish != null){
-      if(fish.state != 9){
+      if(fish.state < 9){
         draw_fish(fish);
       }else{
-        score += fish.level;
+        if(fish.state == 9){
+          score += fish.level;
+        }
         refreshPage();
         clearInterval(fishArr[fish_index][1]);
         clear_fish(fish);
@@ -106,18 +112,27 @@ function catch_fish(fisher_index){
       fisher = fisherArr[fisher_index][0];
       for(var i = 0; i<fishArr.length; i++){
           if(fishArr[i][0] != null){
+            //console.log(getRadius(fishArr[i][0],fisher));
             if(getRadius(fishArr[i][0],fisher) < fisher.range){
-                if(absSlope(fishArr[i][0],fisher) > 1){
-                    if(fish.yPos > fisher.yPos){
+              //utx.beginPath();
+              //utx.moveTo(fisher.xPos + 23, fisher.yPos + 64);
+              //utx.lineTo(fishArr[i][0].xPos, fishArr[i][0].yPos);
+              //utx.stroke();
+                if(absSlope(fishArr[i][0],fisher) >= (window.innerHeight)/(window.innerWidth)){
+                    if(fish.catchY > fisher.catchY){
                         fisher.direction = 0;
+                        console.log("front");
                     }else{
                         fisher.direction = 2;
+                        console.log("back");
                     }
                 }else{
-                    if(fish.xPos > fisher. xPos){
+                    if(fish.catchX > fisher.catchX){
                         fisher.direction = 1;
+                        console.log("left");
                     }else{
                         fisher.direction = 3;
+                        console.log("right");
                     }
                 }
                 if(Math.random()*10<3){
@@ -133,11 +148,11 @@ function catch_fish(fisher_index){
 }
 
 function getRadius(fish, fisher){
-  return Math.pow(Math.pow(fisher.xPos - fish.xPos,2) + Math.pow(fisher.yPos - fish.yPos,2),.5);
+  return Math.pow(Math.pow(fisher.catchX - fish.catchX,2) + Math.pow(fisher.catchY - fish.catchY,2),.5);
 }
 
 function absSlope(fish, fisher){
-  return Math.abs((fish.yPos - fisher.yPos)/(fish.xPos - fisher.xPos));
+  return Math.abs((fish.yPos - fisher.catchY)/(fish.xPos - fisher.catchX));
 }
 
 function readLevel(){
@@ -177,9 +192,9 @@ function make_fisher(fisher,i){
   fisherArr.push([fisher,newTimer]);
 }
 
+
 function drag(e){
-  newFisher.xPos = e.pageX;
-  newFisher.yPos = e.pageY;
+  newFisher.updateXY(((e.clientX - rect.left) * scaleX) - 23, ((e.clientY - rect.top) * scaleY) - 64);
   clear_fisher();
   draw_fisher(newFisher, true);
 }
@@ -193,7 +208,6 @@ function mouseUp(e){
   make_fisher(newFisher, currentFisherIndex++);
   availableFishers--;
   refreshPage();
-  console.log(currentFisherIndex);
 }
 
 function refreshPage(){
@@ -212,7 +226,6 @@ function levelComplete(){
     fishArr = [];
     fishCount = 0;
     clearInterval(isDone);
-
     console.log("Level is over");
   }
 }

@@ -37,6 +37,8 @@ class Fish{
         this.yPos = this.yPos + this.speed; //2.5
         break;
     }
+    this.catchX = this.xPos + 32;
+    this.catchY = this.yPos + 32;
     switch(this.state){
       case 0:
         if(this.xPos>355 + this.offsetX && this.xPos<365 + this.offsetX){ //center at 356
@@ -88,7 +90,7 @@ class Fish{
         break;
       case 8:
         if(this.xPos>1440){
-         this.state++;
+         this.state = 10;
         }
         break;
     }
@@ -140,7 +142,6 @@ class Fish{
     this.strength  -= 1;
     if(this.strength>0){
       this.setFishSpeed();
-
     }else{
       this.state = 9;
     }
