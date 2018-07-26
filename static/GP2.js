@@ -210,7 +210,7 @@ function mouseUp(e){
 }
 
 function refreshPage(){
-  document.getElementById("scoreTag").innerHTML = "Score = " + score + "<br>Population = " + population + "<br>Avaliable Fishers = " + availableFishers;
+  document.getElementById("scoreTag").innerHTML = "Score = " + score + "<br>Village Population = " + population + "<br>Avaliable Fishers = " + availableFishers;
 }
 
 function levelComplete(){
