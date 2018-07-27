@@ -70,11 +70,24 @@ body{
   position: absolute;
 }
 #scoreTag{
-  size = 30px;
   z-index: 7;
   position:absolute;
-  left: 5%;
-  top: 90%;
+  left: 4.5%;
+  top: 81.5%;
+  font-size: 20px;
+}
+#populationTag{
+  z-index: 7;
+  position:absolute;
+  left: 7.5%;
+  top: 83.5%;
+  font-size: 20px;
+}
+#availableFishersTag{
+  z-index: 7;
+  position:absolute;
+  left: 8.5%;
+  top: 86%;
   font-size: 20px;
 }
 

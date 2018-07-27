@@ -9,9 +9,11 @@
   </head>
 
   <body>
-    <p id="nickname">Welcome {{nickname}}</p >
+    <p id="nickname">Welcome {{nickname}}</p>
 
-    <p id="scoreTag">Score = 0<br>Village Population = 10<br>Avaliable Fishers = 2</p>
+    <p id="scoreTag">0</p>
+    <p id="populationTag">10</p>
+    <p id="availableFishersTag">2</p>
     <div hidden id="levelData">{{levelData}}</div>
     <!-- <canvas id="ui-layer" width="1440" height="900"></canvas> -->
 
@@ -24,7 +26,7 @@
       <div id="allFish">
         <div id="redFishGroup">
           <div class="fishImg" ><img src="/static/imgs/red_fish_right.png"></div>
-          <div class="fishInfo"><p>score = 1<br>catch attempt = 1 </p></div>
+          <div class="fishInfo"><p>score = 1<br>catch attemps = 1</p></div>
         </div>
         <div id="blueFishGroup">
           <div class="fishImg" ><img src="/static/imgs/blue_fish_right.png"></div>

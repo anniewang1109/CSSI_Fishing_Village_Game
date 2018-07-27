@@ -111,37 +111,40 @@ function catch_fish(fisher_index){
         draw_fisher(fisher,false);
       }
       fisher = fisherArr[fisher_index][0];
+      fisher.minDistance = fisher.range;
+      fisher.closestFishIndex =  -1;
       for(var i = 0; i<fishArr.length; i++){
           if(fishArr[i][0] != null){
-            if(getRadius(fishArr[i][0],fisher) < fisher.range){
-              if()
-            }
-              // utx.beginPath();
-              // utx.moveTo(fisher.catchX, fisher.catchY);
-              // utx.lineTo(fishArr[i][0].catchX, fishArr[i][0].catchY);
-              // utx.stroke();
-              //console.log(absSlope(fishArr[i][0],fisher));
-                if(absSlope(fishArr[i][0],fisher) >= (window.innerHeight)/(window.innerWidth)){
-                    if(fish.catchY > fisher.catchY){
-                        fisher.direction = 0;
-                    }else{
-                        fisher.direction = 2;
-                    }
-                }else{
-                    if(fish.catchX > fisher.catchX){
-                        fisher.direction = 1;
-                    }else{
-                        fisher.direction = 3;
-                    }
-                }
-                if(Math.random()*100<5){
-                  fishArr[i][0].setCaught();
-                }
-                fisher.currentFrame = 46;
-                draw_fisher(fisher,false);
-                break;
+            if(getRadius(fishArr[i][0],fisher) < fisher.minDistance){
+                fisher.minDistance = getRadius(fishArr[i][0],fisher);
+                fisher.closestFishIndex =  i;
             }
           }
+      }
+      // utx.beginPath();
+      // utx.moveTo(fisher.catchX, fisher.catchY);
+      // utx.lineTo(fishArr[i][0].catchX, fishArr[i][0].catchY);
+      // utx.stroke();
+      //console.log(absSlope(fishArr[i][0],fisher));
+      if(fisher.closestFishIndex != -1){
+        if(absSlope(fishArr[fisher.closestFishIndex][0],fisher) >= (window.innerHeight)/(window.innerWidth)){
+            if(fishArr[fisher.closestFishIndex][0].catchY > fisher.catchY){
+                fisher.direction = 0;
+            }else{
+                fisher.direction = 2;
+            }
+        }else{
+            if(fishArr[fisher.closestFishIndex][0].catchX > fisher.catchX){
+                fisher.direction = 1;
+            }else{
+                fisher.direction = 3;
+            }
+        }
+        if(Math.random()*100<50){ ///ASK DAD ABOUT THIS
+          fishArr[fisher.closestFishIndex][0].setCaught();
+        }
+        fisher.currentFrame = 46;
+        draw_fisher(fisher,false);
       }
     }
 }
@@ -210,7 +213,9 @@ function mouseUp(e){
 }
 
 function refreshPage(){
-  document.getElementById("scoreTag").innerHTML = "Score = " + score + "<br>Village Population = " + population + "<br>Avaliable Fishers = " + availableFishers;
+  document.getElementById("scoreTag").innerHTML = score;
+  document.getElementById("populationTag").innerHTML = population;
+  document.getElementById("availableFishersTag").innerHTML = availableFishers;
 }
 
 function levelComplete(){
@@ -260,8 +265,11 @@ function getLevel(){
 console.log((window.innerHeight)/(window.innerWidth));
 background.backgroundSize = window.innerWidth + "px " + window.innerHeight + "px;";
 
-ctxF.fillRect(0,800,46,128);
-ctxF.fillRect(500,800,92,92);
+var scoreBoard = new Image();
+scoreBoard.src = "/static/imgs/Board.png";
+scoreBoard.onload = function () {
+   ctxF.drawImage(scoreBoard, 0,screen.height - 175,325,175)
+}
 //full_canvas();
 getLevel();
 level = levels[0];
