@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<embed name="" src="/static/fisherman_music.mp3" loop="true" hidden="true" autostart="true">
+
   <head>
     <title>Fishing Village</title>
     <link rel="stylesheet" href="static/gamePage.css"/>
@@ -9,19 +9,19 @@
   </head>
 
   <body>
-    <p id="nickname">Welcome {{nickname}}</p>
+    <p id="nickname" class="noSelectText">Welcome {{nickname}}</p>
 
     <div class="flexBoxVertical" id="controls">
       <div class="flexBoxHorizontal" id="row1">
-        <div id="scoreBoard">
-          <p id="scoreTag"></p>
-          <p id="populationTag"></p>
-          <p id="availableFishersTag"></p>
+        <div id="scoreBoard" class="noSelectText">
+          <p id="scoreTag" class="noSelectText"></p>
+          <p id="populationTag" class="noSelectText"></p>
+          <p id="availableFishersTag" class="noSelectText"></p>
         </div>
 
       <div class="flexBoxHorizontal" id="generateFisher">
-        <img class="trim" id="fisherImg" src="/static/imgs/fisher_icon.png" disabled/>
-        <div id="fisherInfo">
+        <img class="trim" class="noSelectImage"id="fisherImg" src="/static/imgs/fisher_icon.png"/>
+        <div id="fisherInfo" class="noSelectText">
           <h2>Level 1 Fisherman<h2>
           <p> Uses fishing rod to catch fish</p>
         </div>
@@ -29,15 +29,15 @@
       </div>
 
       <div class="flexBoxHorizontal" id="buttons">
-        <div id="startButton" class="button">START</div>
-        <div id="stopButton" class="button">STOP FISHING</div>
-        <a href="/" id="exitButton" class="button">EXIT</a>
+        <div id="startButton" class="button" class="noSelectText">START</div>
+        <div id="stopButton" class="button" class="noSelectText">STOP FISHING</div>
+        <a href="/" id="exitButton" class="button" class="noSelectText">EXIT</a>
       </div>
     </div>
     <div hidden id="levelData">{{levelData}}</div>
     <!-- <canvas id="ui-layer" width="1440" height="900"></canvas> -->
 
-    <div id="instructions">
+    <div id="instructions" class="noSelectImage" class="noSelectText">
       <h1>Instructions</h1>
       <ul>
         <li>click, drag, and drop fishers to catch fish</li>
@@ -45,16 +45,16 @@
       </ul>
       <div id="allFish">
         <div id="redFishGroup">
-          <div id="fishImg" class="trim"><img src="/static/imgs/red_fish_right.png"></div>
-          <div class="fishInfo"><p>score = 1<br>catch attempt = 1</p></div>
+          <div id="fishImg" class="trim" class="noSelectImage"><img src="/static/imgs/red_fish_right.png"></div>
+          <div class="fishInfo" class="noSelectText"><p>score = 1<br>catch attempt = 1</p></div>
         </div>
         <div id="blueFishGroup">
-          <div id="fishImg" class="trim"><img src="/static/imgs/blue_fish_right.png"></div>
-          <div class="fishInfo"><p>score = 2<br>catch attempts = 2 </p></div>
+          <div id="fishImg" class="trim" class="noSelectImage"><img src="/static/imgs/blue_fish_right.png"></div>
+          <div class="fishInfo" class="noSelectText"><p>score = 2<br>catch attempts = 2 </p></div>
         </div>
         <div id="yellowFishGroup">
-          <div id="fishImg" class="trim"><img src="/static/imgs/yellow_fish_right.png"></div>
-          <div class="fishInfo"><p>score = 3<br>catch attempts = 3 </p></div>
+          <div id="fishImg" class="trim" class="noSelectImage"><img src="/static/imgs/yellow_fish_right.png"></div>
+          <div class="fishInfo" class="noSelectText"><p>score = 3<br>catch attempts = 3 </p></div>
         </div>
       </div>
       <ul>
@@ -63,12 +63,6 @@
         <li>click <!--replace the word "STOP" with an image of the stop button-->"STOP" to end level</li>
       </ul>
     </div>
-
-    <form id = "addFisherToAppEngine" type="submit" method="post">
-      <div hidden id = "fisherX"></div>
-      <div hidden id = "fisherY"></div>
-      <div hidden id = "levels"></div>
-    </form>
 
     <canvas id="game-layerU" width="1440" height="900"></canvas>
     <canvas id="game-layerF" width="1440" height="900"></canvas>
