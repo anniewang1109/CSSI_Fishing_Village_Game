@@ -15,23 +15,16 @@ var fishCount = 0;
 var wait;
 var newFisher;
 var score = 0;
-var population = 10;
-var availableFishers = 2;
+var population = 30;
+var availableFishers = 3;
 var done = true;
 var isDone;
 var levelNum = 0;
 var rect = fisherCanvas.getBoundingClientRect(); // abs. size of element
 var scaleX = fisherCanvas.width / rect.width;    // relationship bitmap vs. element for X
 var scaleY = fisherCanvas.height / rect.height;
-// function full_canvas(){
-//   var canvas = document.getElementById("game-layerF")
-//   let width = screen.innerWidth
-//   let height = screen.innerHeight
-//   canvas.style.width = width + "px";
-//   canvas.style.height = height + "px";
-// }
-
-// document.querySelector("#nickname").
+var stopFishing = false;
+var fishRatio = 1;
 
 function draw_fish(fish){
   clear_fish(fish);
@@ -105,47 +98,49 @@ function swim(fish_index){
 }
 
 function catch_fish(fisher_index){
-    if(fisherArr.length>0){
-      if(fisherArr[fisher_index][0].currentFrame == 46){
-        fisher.currentFrame = 0;
-        draw_fisher(fisher,false);
-      }
-      fisher = fisherArr[fisher_index][0];
-      fisher.minDistance = fisher.range;
-      fisher.closestFishIndex =  -1;
-      for(var i = 0; i<fishArr.length; i++){
-          if(fishArr[i][0] != null){
-            if(getRadius(fishArr[i][0],fisher) < fisher.minDistance){
-                fisher.minDistance = getRadius(fishArr[i][0],fisher);
-                fisher.closestFishIndex =  i;
-            }
+    if(stopFishing == false){
+        if(fisherArr.length>0){
+          if(fisherArr[fisher_index][0].currentFrame == 46){
+            fisher.currentFrame = 0;
+            draw_fisher(fisher,false);
           }
-      }
-      // utx.beginPath();
-      // utx.moveTo(fisher.catchX, fisher.catchY);
-      // utx.lineTo(fishArr[i][0].catchX, fishArr[i][0].catchY);
-      // utx.stroke();
-      //console.log(absSlope(fishArr[i][0],fisher));
-      if(fisher.closestFishIndex != -1){
-        if(absSlope(fishArr[fisher.closestFishIndex][0],fisher) >= (window.innerHeight)/(window.innerWidth)){
-            if(fishArr[fisher.closestFishIndex][0].catchY > fisher.catchY){
-                fisher.direction = 0;
+          fisher = fisherArr[fisher_index][0];
+          fisher.minDistance = fisher.range;
+          fisher.closestFishIndex =  -1;
+          for(var i = 0; i<fishArr.length; i++){
+              if(fishArr[i][0] != null){
+                if(getRadius(fishArr[i][0],fisher) < fisher.minDistance){
+                    fisher.minDistance = getRadius(fishArr[i][0],fisher);
+                    fisher.closestFishIndex =  i;
+                }
+              }
+          }
+          // utx.beginPath();
+          // utx.moveTo(fisher.catchX, fisher.catchY);
+          // utx.lineTo(fishArr[i][0].catchX, fishArr[i][0].catchY);
+          // utx.stroke();
+          //console.log(absSlope(fishArr[i][0],fisher));
+          if(fisher.closestFishIndex != -1){
+            if(absSlope(fishArr[fisher.closestFishIndex][0],fisher) >= (window.innerHeight)/(window.innerWidth)){
+                if(fishArr[fisher.closestFishIndex][0].catchY > fisher.catchY){
+                    fisher.direction = 0;
+                }else{
+                    fisher.direction = 2;
+                }
             }else{
-                fisher.direction = 2;
+                if(fishArr[fisher.closestFishIndex][0].catchX > fisher.catchX){
+                    fisher.direction = 1;
+                }else{
+                    fisher.direction = 3;
+                }
             }
-        }else{
-            if(fishArr[fisher.closestFishIndex][0].catchX > fisher.catchX){
-                fisher.direction = 1;
-            }else{
-                fisher.direction = 3;
+            if(Math.random()*100<((100-getRadius(fishArr[fisher.closestFishIndex][0],fisher))/2)){ ///ASK DAD ABOUT THIS
+              fishArr[fisher.closestFishIndex][0].setCaught();
             }
+            fisher.currentFrame = 46;
+            draw_fisher(fisher,false);
+          }
         }
-        if(Math.random()*100<50){ ///ASK DAD ABOUT THIS
-          fishArr[fisher.closestFishIndex][0].setCaught();
-        }
-        fisher.currentFrame = 46;
-        draw_fisher(fisher,false);
-      }
     }
 }
 
@@ -179,7 +174,7 @@ function readLevel(){
       currentFishIndex++;
       wait = setInterval(readLevel, 1000);
     }else{
-      isDone = setInterval(levelComplete, 10000);
+      isDone = setInterval(levelComplete, 2000);
     }
 }
 
@@ -229,50 +224,68 @@ function levelComplete(){
   if(done){
     fishArr = [];
     fishCount = 0;
+    currentFishIndex = 0;
+    updateSettings();
+    createLevel();
     clearInterval(isDone);
-    console.log("Level is over");
   }
 }
 
 document.addEventListener("mousedown", function(e){
-  if((e.pageX>0 && e.pageX <46) &&(e.pageY>740 && e.pageY<825)){
-    if(availableFishers > 0){
-      newFisher = new Fisher(e.pageX,e.pageY);
-      document.addEventListener("mousemove", drag);
-      document.addEventListener("mouseup", mouseUp);
+    localX = ((e.clientX - rect.left) * scaleX);
+    localY = ((e.clientY - rect.top) * scaleY);
+    if((localX > 220 && localX < 260) && (localY > 745 && localY < 785)){
+        if(availableFishers > 0){
+          newFisher = new Fisher(e.pageX,e.pageY);
+          document.addEventListener("mousemove", drag);
+          document.addEventListener("mouseup", mouseUp);
+        }
     }
-  }
-  if((e.screenX>340 && e.screenX <400) &&(e.screenY>810 && e.screenY<890)){
-    console.log("button clicked");
-    if(done == true){
-      if (levelNum <  levels.length) {
-          done = false;
-          level = levels[levelNum++];
-          console.log("Level has started " + levelNum);
-          done = false;
-          readLevel();
+    if((localX > 200 && localX < 290) && (localY > 835 && localY < 870)){
+        stopFishing = true;
+    }
+    if((localX > 35 && localX < 125) && (localY > 835 && localY < 870)){
+      console.log("Im clicking a button");
+      if(done == true){
+          if (levelNum < 10) {
+              done = false;
+              createLevel();
+              level = levels[levelNum++];
+              console.log(level);
+              done = false;
+              stopFishing = false;
+              readLevel();
+          }
       }
-    }
   }
 });
 
 var levels = []
-function getLevel(){
-  levels = document.getElementById('levelData').innerHTML.split("_");
-  console.log(levels);
+
+function createLevel(){
+    levels[levelNum] = "";
+    for(var i = 0; i<population*fishRatio*1.5; i+=fishMade){
+      waitTime = "|".repeat(Math.floor((Math.random() * 4) + 1));
+      fishMade = Math.floor((Math.random() * 3) + 1);
+      console.log(waitTime + fishMade);
+      levels[levelNum] += fishMade + waitTime;
+    }
 }
 
-console.log((window.innerHeight)/(window.innerWidth));
-background.backgroundSize = window.innerWidth + "px " + window.innerHeight + "px;";
+function updateSettings() {
+    fishRatio = population/score;
+    if(score - population < 0){
+        
+    }
+    availableFishers = (score - population)/5;
+    population += (score - population) * 5;
+
+}
 
 var scoreBoard = new Image();
 scoreBoard.src = "/static/imgs/Board.png";
 scoreBoard.onload = function () {
    ctxF.drawImage(scoreBoard, 0,screen.height - 175,325,175)
 }
-//full_canvas();
-getLevel();
-level = levels[0];
-console.log("Level has started");
-done = false;
-readLevel();
+
+refreshPage();
