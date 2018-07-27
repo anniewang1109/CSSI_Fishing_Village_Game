@@ -230,19 +230,20 @@ function levelComplete(){
     fishArr = [];
     fishCount = 0;
     currentFishIndex = 0;
+    console.log("step 1");
     updateSettings();
+    console.log("step 2");
     lastLevelScore += score;
     clearInterval(isDone);
-    passToAppEngine();
+    //passToAppEngine();
   }
 }
 
 document.addEventListener("mousedown", function(e){
     localX = ((e.clientX - rect.left) * scaleX);
     localY = ((e.clientY - rect.top) * scaleY);
-    console.log(localX + " - " + localY);
+    //console.log(localX + " - " + localY);
     if((localX > 230 && localX < 270) && (localY > 750 && localY < 800)){
-      console.log("grab fisher");
         if(availableFishers > 0){ // fisherman
           newFisher = new Fisher(e.pageX,e.pageY);
           document.addEventListener("mousemove", drag);
@@ -266,10 +267,13 @@ document.addEventListener("mousedown", function(e){
 });
 
 function passToAppEngine(){
-    document.getElementById("fisherX").innerHTML = fishersX;
-    document.getElementById("fisherY").innerHTML = fishersY;
-    document.getElementById("levels").innerHTML = levels;
-    document.getElementById("addFisherToAppEngine").submit(); //???
+    const url = '/game?GameUser.fisherX=' + fisherX + '&GameUser.fisherY=' + fisherY + '&GameUser.levels' + levels;
+    const options = {
+      method: 'POST',
+      credentials: 'same-origin',
+    };
+    const request = new Request(url, options);
+    fetch(request);
 }
 
 function createLevel(){
@@ -280,14 +284,20 @@ function createLevel(){
       if(fishMade2 == 0){
         fishMade2 = "|";
       }
-      level += fishMade + fishMade2 + waitTime;
+      level += fishMade + "" +  fishMade2 + waitTime;
     }
     levels = levels + "_" + level;
+    console.log(level);
 }
 
 function updateSettings(){
     score -= lastLevelScore;
     fishRatio = fishRatio * (population/score);
+    if((fishRatio == 0)||(population = 0)){
+        document.getElementById('winOrLose').value = "Lost";
+        document.getElementById('endGame').submit();
+    }
+
     if(score - population < 0){
         for(var i = 0; i<Math.floor((score - population)/6); i++){
             clear_fisher(fisherArr[fisherArr.length-1][0]);

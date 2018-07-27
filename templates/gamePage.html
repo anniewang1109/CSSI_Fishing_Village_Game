@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+<embed name="" src="/static/fisherman_music.mp3" loop="true" hidden="true" autostart="true">
   <head>
     <title>Fishing Village</title>
     <link rel="stylesheet" href="static/gamePage.css"/>
@@ -14,14 +14,24 @@
 
     <div class="flexBoxVertical" id="controls">
       <div class="flexBoxHorizontal" id="row1">
-        <div id="scoreBoard" class="noSelectText">
-          <p id="scoreTag" class="noSelectText"></p>
-          <p id="populationTag" class="noSelectText"></p>
-          <p id="availableFishersTag" class="noSelectText"></p>
+        <div id="scoreBoard" name = "scoreBoard" class="noSelectText" method = "post">
+          <p id="scoreTag" name = "scoreTag" class="noSelectText"></p>
+          <p id="populationTag" name = "populationTag" class="noSelectText"></p>
+          <p id="availableFishersTag" name = "availableFishersTag" class="noSelectText"></p>
         </div>
 
+        <form id = "addFisherToAppEngine" method="post">
+          <div hidden id = "fisherX" name = "fisherX" value = ""></div>
+          <div hidden id = "fisherY" name = "fisherY" value = ""></div>
+          <div hidden id = "levels" name = "levels" value = ""></div>
+        </form>
+
+        <form id = "endGame" action="/results.html">
+          <div name = "winOrLose" value = ""></div>
+        </form>
+
       <div class="flexBoxHorizontal" id="generateFisher">
-        <img class="trim" class="noSelectImage"id="fisherImg" src="/static/imgs/fisher_icon.png"/>
+        <img class="trim" class="noSelectImage" id="fisherImg" src="/static/imgs/fisher_icon.png"/>
         <div id="fisherInfo" class="noSelectText">
           <h2>Level 1 Fisherman<h2>
           <p> Uses fishing rod to catch fish</p>

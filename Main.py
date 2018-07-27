@@ -50,8 +50,8 @@ class BackstoryHandler(webapp2.RequestHandler):
 
 class GameHandler(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user();
-        print(user.nickname());
+        user = users.get_current_user()
+        print(user.nickname())
         if(GameUser.query(GameUser.username == user.nickname()).count() == 0):
             newUser = User(username = user.nickname())
             currentUser = newUser.put()
@@ -68,22 +68,16 @@ class GameHandler(webapp2.RequestHandler):
             self.response.write(template.render(template_vars))
         else:
             self.redirect('/')
-    def post(self):
-        currentUser.fisherX = self.request.get('fisherX')
-        currentUser.fisherY = self.request.get('fisherY')
-        currentUser.levels = self.request.get('levels')
-        currentUser = currentUser.push()
 
 class ResultsHandler(webapp2.RequestHandler):
     def get(self):
+        message = self.response.get('winOrLose')
+        print(message)
         # message = self.request.get(some variable that contains info if player won or not as true or false)
-
-        # template_vars{
-        #     'result' = message,
-        # }
+        template_vars = {'result': message}
 
         template=jinja_current_directory.get_template('/templates/results.html')
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
