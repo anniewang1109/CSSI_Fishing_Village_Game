@@ -6,7 +6,7 @@ class Fisher{
     this.yPos = y;
     this.direction = 0;
     this.currentFrame = 0;
-    this.range = 100;
+    this.range = 150;
     this.closestFishIndex;
     this.minDistance = this.range;
     this.images = [];

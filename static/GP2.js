@@ -138,7 +138,7 @@ function catch_fish(fisher_index){
                     fisher.direction = 3;
                 }
             }
-            if(Math.random()*100<((100-getRadius(fishArr[fisher.closestFishIndex][0],fisher))/2)){ ///ASK DAD ABOUT THIS
+            if(Math.random()*150<(.1)*(150-getRadius(fishArr[fisher.closestFishIndex][0],fisher))){ ///ASK DAD ABOUT THIS
               fishArr[fisher.closestFishIndex][0].setCaught();
             }
             fisher.currentFrame = 46;
@@ -261,6 +261,9 @@ document.addEventListener("mousedown", function(e){
               console.log("Level " + levelNum);
               stopFishing = false;
               readLevel();
+          }else{
+              document.getElementById('winOrLose').value = "Win";
+              document.getElementById('endGame').submit();
           }
       }
   }
