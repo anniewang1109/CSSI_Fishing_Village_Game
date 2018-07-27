@@ -16,7 +16,7 @@ var wait;
 var newFisher;
 var score = 0;
 var population = 30;
-var availableFishers = 3;
+var availableFishers = 5;
 var done = true;
 var isDone;
 var levelNum = 0;
@@ -277,17 +277,17 @@ function updateSettings(){
             clear_fisher(fisherArr[fisherArr.length-1][0]);
             fisherArr.pop();
         }
-        availableFishers -= Math.floor((score - population)/6);
+        availableFishers += Math.floor((score - population)/6);
         if(availableFishers < 0){
           availableFishers = 0;
         }
         population += (score - population) + 10;
     }else if(score - population > 0){
-        availableFishers = Math.floor((score - population)/6) + 1;
+        availableFishers += Math.floor((score - population)/6) + 1;
         population += (score - population) + 10; //surplus of fish AND 10 extra
     }else{
         population += 10;
-        availableFishers = 1;
+        availableFishers += 1;
     }
     refreshPage();
     score += lastLevelScore;
