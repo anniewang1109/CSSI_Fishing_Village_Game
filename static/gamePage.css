@@ -10,10 +10,6 @@ body{
   font-family: 'VT323', monospace;
 }
 
-p{
-  font-size: 20px;
-}
-
 #background-layer{
   z-index: 1;
   display: block;
@@ -78,7 +74,8 @@ p{
   z-index: 7;
   position:absolute;
   left: 5%;
-  top: 90%
+  top: 90%;
+  font-size: 20px;
 }
 
 #nickname{
@@ -86,6 +83,56 @@ p{
   position: absolute;
   left:3px;
   top: 3px;
-  /* line-height: .5; */
-  /* margin: 0px; */
+  font-size: 20px;
+}
+
+#instructions{
+  font-size: 20px;
+  z-index:9;
+  position: absolute;
+  bottom:0px;
+  right: 0px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 20px;
+  background-color: black;
+  color: white;
+}
+
+h1{
+  text-align: center;
+}
+
+a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    width: 120px;
+    padding: 8px;
+    border-radius: .7em;
+    border-style: double;
+    margin-top: 20px;
+    margin-left: 100%;
+}
+
+li{
+  margin-left: 15px;
+}
+
+#allFish{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.fishImg{
+  margin-top: -18px;
+  max-height:60px;
+  max-width:32px;
+  overflow: hidden;
+}
+
+.fishInfo{
+  padding-bottom: 12px;
 }
