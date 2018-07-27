@@ -11,16 +11,37 @@
   <body>
     <div id="backstory">
       <h1>Backstory</h1>
-        <p>Will there be enough fish to feed the world in 2050? <br>
-          Overfishing has been a problem for hundreds of years and you have the power to help fix it.</p>
+        <h2>Will there be enough fish to feed the world in 2050? <br>
+          Overfishing has been a problem for hundreds of years and you have the power to help fix it.
+        <!--add how overfishing will damage the marine ecosystem--></h2>
     </div>
 
     <div id="instructions">
       <h1>Instructions</h1>
-        <p>Click and drag the fisherman from the bottom-right menu</p>
-        <p>Fish but do not over do it...</p>
+      <ul>
+        <li>click, drag, and drop fishers to catch fish</li>
+        <li>score = # village population can be fed</li>
+      </ul>
+      <div id="allFish">
+        <div id="redFishGroup">
+          <div class="fishImg" ><img src="/static/imgs/red_fish_right.png"></div>
+          <div class="fishInfo"><p>score = 1<br>catch attempt = 1</p></div>
+        </div>
+        <div id="blueFishGroup">
+          <div class="fishImg" ><img src="/static/imgs/blue_fish_right.png"></div>
+          <div class="fishInfo"><p>score = 2<br>catch attempts = 2</p></div>
+        </div>
+        <div id="yellowFishGroup">
+          <div class="fishImg" ><img src="/static/imgs/yellow_fish_right.png"></div>
+          <div class="fishInfo"><p>score = 3<br>catch attempts = 3</p></div>
+        </div>
+      </div>
+      <ul>
+        <li>OVERFISH<br>-> village pop. increases + fish pop. decreases</li>
+        <li>UNDERFISH<br>-> village pop. decreases + fish pop. increases</li>
+        <li>click <!--replace the word "STOP" with an image of the stop button-->"STOP" to end level</li>
+      </ul>
     </div>
-
     <a href="/game">Continue ></a>
 
     <script src="static/backstory.js"></script>

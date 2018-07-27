@@ -3,7 +3,7 @@
 <html>
 
   <head>
-    <title>VICTORY!</title>
+    <title>Fishing Village - Results</title>
     <link rel="stylesheet" href="static/results.css"/>
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
 
@@ -12,16 +12,36 @@
   <body>
     <div class="result" id="win">
       <h1>BRAVO!</h1>
+      <br>
       <h1>YOU WIN!</h1>
     </div>
-
+<!--
     <div class="result" id="lose">
       <h1>GAME OVER!</h1>
+      <br>
       <h1>YOU LOSE!</h1>
-    </div>
+    </div> -->
 
-    <a class="button" id="donateButton" href="https://www.worldwildlife.org/initiatives/oceans">Donate</a>
-    <a class="button" id="learnMoreButton" href="https://www.edf.org/oceans/how-turn-around-overfishing-crisis">Learn More</a>
+    <!-- when RequestHandler works uncomment the following -->
+    <!-- {%if result%}
+      <div class="result" id="win">
+        <h1>BRAVO!</h1>
+        <br>
+        <h1>YOU WIN!</h1>
+      </div>
+    {%else%}
+      <div class="result" id="lose">
+        <h1>GAME OVER!</h1>
+        <br>
+        <h1>YOU LOSE!</h1>
+      </div>
+    {%endif%} -->
+
+    <div id="buttons">
+      <a class="button" href="https://www.worldwildlife.org/initiatives/oceans">Donate</a>
+      <a class="button" href="http://overfishing.org/pages/what_is_overfishing.php">Learn More</a>
+    </div>
+    <a id="homeButton" class="button" href="/">Home</a>
   </body>
 
 </html>

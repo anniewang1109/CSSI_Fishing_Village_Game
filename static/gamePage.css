@@ -10,8 +10,31 @@ body{
   font-family: 'VT323', monospace;
 }
 
+h1{
+  text-align: center;
+  font-size:22px;
+}
+
+h2{
+  font-size: 22px;
+}
+
 p{
   font-size: 20px;
+  font-weight: lighter;
+}
+
+a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    border-color: black;
+}
+
+li{
+  margin-left: 15px;
 }
 
 #background-layer{
@@ -26,7 +49,6 @@ p{
   width: 100%;
   height: 100%;
   position: absolute;
-  /* border: 1px solid black; */
 }
 #game-layerR{
   z-index: 2;
@@ -73,19 +95,140 @@ p{
   height: 100%;
   position: absolute;
 }
-#scoreTag{
-  size = 30px;
+/* #scoreTag{
   z-index: 7;
   position:absolute;
-  left: 5%;
-  top: 90%
+  left: 4.5%;
+  top: 81.5%;
+  font-size: 20px;
 }
+#populationTag{
+  z-index: 7;
+  position:absolute;
+  left: 7.5%;
+  top: 83.5%;
+  font-size: 20px;
+}
+#availableFishersTag{
+  z-index: 7;
+  position:absolute;
+  left: 8.5%;
+  top: 86%;
+  font-size: 20px;
+} */
 
 #nickname{
   z-index: 8;
   position: absolute;
   left:3px;
   top: 3px;
-  /* line-height: .5; */
-  /* margin: 0px; */
+  font-size: 25px;
+}
+
+#scoreBoard{
+  font-size: 24px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: fit-content;
+}
+
+#buttons{
+  border-top: solid black;
+}
+
+
+#instructions{
+  font-size: 20px;
+  z-index:9;
+  position: absolute;
+  bottom:0px;
+  right: 0px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 20px;
+  background-color: rgba(230,230,230,.7);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  color: black;
+}
+
+#allFish{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: -10px;
+}
+
+#fishImg{
+  margin-top: -18px;
+}
+
+#fisherImg{
+  margin:auto;
+  margin-left: 10px;
+  min-height: 40px;
+  min-width: 40px;
+}
+
+#fisherInfo{
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 10px;
+}
+
+#generateFisher{
+  border-left: solid black;
+}
+
+#controls{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(230,230,230,.7);
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  color: black;
+  z-index: 7;
+}
+
+.flexBoxVertical{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+}
+
+.flexBoxHorizontal{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.trim{
+  max-height:60px;
+  max-width:32px;
+  overflow: hidden;
+}
+
+
+
+.fishInfo{
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.button{
+  padding: 10px;
+  margin:10px;
+  cursor: pointer;
+  border-style: solid;
+  border-radius: 1em;
+  width: 100px;
+  height: fit-content;
+  text-align: center;
+  font-size: 20px;
 }

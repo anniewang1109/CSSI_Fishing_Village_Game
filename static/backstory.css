@@ -7,37 +7,67 @@
 body{
   color: white;
   background-color: black;
-  margin: 20%;
-  /* margin-right: 20%; */
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 100px;
+  margin-bottom: 10%;
+  overflow: hidden;
 }
 
 h1{
-  font-size: 50px;
+  font-size: 70px;
   padding-top: 12px;
   padding-bottom: 12px;
 }
 
 
-p{
-  font-size: 20px;
+h2{
+  font-size: 30px;
+  padding-left: 30px;
 }
 
-a{
-  display: block;
-  text-decoration: none;
-  color: white;
-  cursor: pointer;
-  width: fit-content;
-  padding: 8px;
-  background-color: blue;
-  margin-top: 20px;
-  margin-right: 0px;
+ul{
+  padding-left: 60px;
 }
 
-#backstory{
-  margin-bottom: 10px;
+li{
+  font-size: 30px;
 }
 
-#instructions{
-  margin-top: 10px;
+a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    width: 120px;
+    padding: 8px;
+    border-radius: .7em;
+    border-style: solid;
+    margin-top: 20px;
+    margin-left: 100%;
+    font-size: 30px;
+}
+
+a:active, a:hover{
+  background-color: white;
+  color: black;
+}
+
+#allFish{
+  font-size: 30px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.fishImg{
+  margin-top: -18px;
+  max-height:60px;
+  max-width:32px;
+  overflow: hidden;
+}
+
+.fishInfo{
+  padding-bottom: 12px;
+  font-size: 26px;
 }
