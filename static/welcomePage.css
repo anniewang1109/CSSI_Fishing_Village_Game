@@ -36,6 +36,9 @@ html {
 
 p{
   font-size: 30px;
+}
+
+#welcome{
   color: black;
 }
 
@@ -51,6 +54,7 @@ p{
   font-size: 22px;
   right: 0px;
   bottom: 0px;
+  color: white;
 }
 
 #groupOfButtons{
