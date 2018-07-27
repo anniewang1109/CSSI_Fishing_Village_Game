@@ -25,8 +25,10 @@ var scaleX = fisherCanvas.width / rect.width;    // relationship bitmap vs. elem
 var scaleY = fisherCanvas.height / rect.height;
 var stopFishing = false;
 var fishRatio = 1;
-var levels = [];
+var levels = "";
 var lastLevelScore = 0;
+var fishersX = "";
+var fishersY = "";
 
 function draw_fish(fish){
   clear_fish(fish);
@@ -230,6 +232,7 @@ function levelComplete(){
     updateSettings();
     lastLevelScore += score;
     clearInterval(isDone);
+    passToAppEngine();
   }
 }
 
@@ -248,10 +251,9 @@ document.addEventListener("mousedown", function(e){
     }
     if((localX > 35 && localX < 125) && (localY > 835 && localY < 870)){
       if(done == true){
-          if (levelNum < 10) {
+          if (levelNum++ < 10) {
               done = false;
               createLevel();
-              level = levels[levelNum++];
               console.log("Level " + levelNum);
               stopFishing = false;
               readLevel();
@@ -260,13 +262,26 @@ document.addEventListener("mousedown", function(e){
   }
 });
 
+function passToAppEngine(){
+    document.getElementById("fisherX").innerHTML = fishersX;
+    document.getElementById("fisherY").innerHTML = fishersY;
+    document.getElementById("levels").innerHTML = levels;
+    document.getElementById("addFisherToAppEngine").submit(); //???
+}
+
 function createLevel(){
-    levels[levelNum] = "";
-    for(var i = 0; i<population*fishRatio*1.5; i+=fishMade){
-      waitTime = "|".repeat(Math.floor((Math.random() * 4) + 1));
+    for(var i = 0; i<population*fishRatio*1.5; i+=((fishMade*2) - 1)){
+      waitTime = "|".repeat(Math.floor((Math.random() * 3) + 2));
       fishMade = Math.floor((Math.random() * 3) + 1);
-      levels[levelNum] += fishMade + waitTime;
+      fishMade2 = fishMade - 1;
+      if(fishMade2 == 0){
+        fishMade2 = "|";
+      }
+      console.log(fishMade2);
+      level += fishMade + fishMade2 + waitTime;
     }
+    levels = levels + "_" + level;
+    console.log(level);
 }
 
 function updateSettings(){
