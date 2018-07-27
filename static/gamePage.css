@@ -167,9 +167,11 @@ li{
 
 #fisherImg{
   margin:auto;
+  pointer-events: none;
   margin-left: 10px;
   min-height: 40px;
   min-width: 40px;
+  z-index: 8;
 }
 
 #fisherInfo{
