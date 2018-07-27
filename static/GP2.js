@@ -215,6 +215,7 @@ function refreshPage(){
   document.getElementById("scoreTag").innerHTML = "Score: " + score;
   document.getElementById("populationTag").innerHTML = "Village Population: " + population;
   document.getElementById("availableFishersTag").innerHTML = "Avaliable Fishers: " + availableFishers;
+  document.getElementById("currentLevel").innerHTML = "Level" + levelNum;
 }
 
 function levelComplete(){

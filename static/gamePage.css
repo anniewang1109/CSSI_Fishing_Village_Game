@@ -125,6 +125,14 @@ li{
   font-size: 25px;
 }
 
+#currentLevel{
+  z-index: 10;
+  position: absolute;
+  top:20px;
+  left: 0px;
+  font-size: 25px;
+}
+
 #scoreBoard{
   font-size: 24px;
   margin-left: 20px;
