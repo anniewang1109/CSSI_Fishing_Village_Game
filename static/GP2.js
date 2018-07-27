@@ -25,6 +25,8 @@ var scaleX = fisherCanvas.width / rect.width;    // relationship bitmap vs. elem
 var scaleY = fisherCanvas.height / rect.height;
 var stopFishing = false;
 var fishRatio = 1;
+var levels = [];
+var lastLevelScore = 0;
 
 function draw_fish(fish){
   clear_fish(fish);
@@ -226,7 +228,7 @@ function levelComplete(){
     fishCount = 0;
     currentFishIndex = 0;
     updateSettings();
-    createLevel();
+    lastLevelScore += score;
     clearInterval(isDone);
   }
 }
@@ -245,14 +247,12 @@ document.addEventListener("mousedown", function(e){
         stopFishing = true;
     }
     if((localX > 35 && localX < 125) && (localY > 835 && localY < 870)){
-      console.log("Im clicking a button");
       if(done == true){
           if (levelNum < 10) {
               done = false;
               createLevel();
               level = levels[levelNum++];
-              console.log(level);
-              done = false;
+              console.log("Level " + levelNum);
               stopFishing = false;
               readLevel();
           }
@@ -260,26 +260,37 @@ document.addEventListener("mousedown", function(e){
   }
 });
 
-var levels = []
-
 function createLevel(){
     levels[levelNum] = "";
     for(var i = 0; i<population*fishRatio*1.5; i+=fishMade){
       waitTime = "|".repeat(Math.floor((Math.random() * 4) + 1));
       fishMade = Math.floor((Math.random() * 3) + 1);
-      console.log(waitTime + fishMade);
       levels[levelNum] += fishMade + waitTime;
     }
 }
 
-function updateSettings() {
-    fishRatio = population/score;
+function updateSettings(){
+    score -= lastLevelScore;
+    fishRatio = fishRatio * (population/score);
     if(score - population < 0){
-        
+        for(var i = 0; i<Math.floor((score - population)/6); i++){
+            clear_fisher(fisherArr[fisherArr.length-1][0]);
+            fisherArr.pop();
+        }
+        availableFishers -= Math.floor((score - population)/6);
+        if(availableFishers < 0){
+          availableFishers = 0;
+        }
+        population += (score - population) + 10;
+    }else if(score - population > 0){
+        availableFishers = Math.floor((score - population)/6) + 1;
+        population += (score - population) + 10; //surplus of fish AND 10 extra
+    }else{
+        population += 10;
+        availableFishers = 1;
     }
-    availableFishers = (score - population)/5;
-    population += (score - population) * 5;
-
+    refreshPage();
+    score += lastLevelScore;
 }
 
 var scoreBoard = new Image();
