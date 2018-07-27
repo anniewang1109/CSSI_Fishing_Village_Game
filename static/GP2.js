@@ -210,9 +210,9 @@ function mouseUp(e){
 }
 
 function refreshPage(){
-  document.getElementById("scoreTag").innerHTML = score;
-  document.getElementById("populationTag").innerHTML = population;
-  document.getElementById("availableFishersTag").innerHTML = availableFishers;
+  document.getElementById("scoreTag").innerHTML = "Score: " + score;
+  document.getElementById("populationTag").innerHTML = "Village Population: " + population;
+  document.getElementById("availableFishersTag").innerHTML = "Avaliable Fishers: " + availableFishers;
 }
 
 function levelComplete(){
@@ -293,10 +293,10 @@ function updateSettings(){
     score += lastLevelScore;
 }
 
-var scoreBoard = new Image();
-scoreBoard.src = "/static/imgs/Board.png";
-scoreBoard.onload = function () {
-   ctxF.drawImage(scoreBoard, 0,screen.height - 175,325,175)
-}
+// var scoreBoard = new Image();
+// scoreBoard.src = "/static/imgs/Board.png";
+// scoreBoard.onload = function () {
+//    ctxF.drawImage(scoreBoard, 0,screen.height - 175,325,175)
+// }
 
 refreshPage();

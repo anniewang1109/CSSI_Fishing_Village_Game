@@ -43,7 +43,7 @@ a {
     width: 120px;
     padding: 8px;
     border-radius: .7em;
-    border-style: double;
+    border-style: solid;
     margin-top: 20px;
     margin-left: 100%;
     font-size: 30px;

@@ -11,9 +11,29 @@
   <body>
     <p id="nickname">Welcome {{nickname}}</p>
 
-    <p id="scoreTag"></p>
-    <p id="populationTag"></p>
-    <p id="availableFishersTag"></p>
+    <div class="flexBoxVertical" id="controls">
+      <div class="flexBoxHorizontal" id="row1">
+        <div id="scoreBoard">
+          <p id="scoreTag"></p>
+          <p id="populationTag"></p>
+          <p id="availableFishersTag"></p>
+        </div>
+
+      <div class="flexBoxHorizontal" id="generateFisher">
+        <img class="trim" id="fisherImg" src="/static/imgs/fisher_icon.png"/>
+        <div id="fisherInfo">
+          <h2>Level 1 Fisherman<h2>
+          <p> Uses fishing rod to catch fish</p>
+        </div>
+      </div>
+      </div>
+
+      <div class="flexBoxHorizontal" id="buttons">
+        <div id="startButton" class="button">START</div>
+        <div id="stopButton" class="button">STOP FISHING</div>
+        <a href="/" id="exitButton" class="button">EXIT</a>
+      </div>
+    </div>
     <div hidden id="levelData">{{levelData}}</div>
     <!-- <canvas id="ui-layer" width="1440" height="900"></canvas> -->
 
@@ -25,15 +45,15 @@
       </ul>
       <div id="allFish">
         <div id="redFishGroup">
-          <div class="fishImg" ><img src="/static/imgs/red_fish_right.png"></div>
+          <div id="fishImg" class="trim"><img src="/static/imgs/red_fish_right.png"></div>
           <div class="fishInfo"><p>score = 1<br>catch attempt = 1</p></div>
         </div>
         <div id="blueFishGroup">
-          <div class="fishImg" ><img src="/static/imgs/blue_fish_right.png"></div>
+          <div id="fishImg" class="trim"><img src="/static/imgs/blue_fish_right.png"></div>
           <div class="fishInfo"><p>score = 2<br>catch attempts = 2 </p></div>
         </div>
         <div id="yellowFishGroup">
-          <div class="fishImg" ><img src="/static/imgs/yellow_fish_right.png"></div>
+          <div id="fishImg" class="trim"><img src="/static/imgs/yellow_fish_right.png"></div>
           <div class="fishInfo"><p>score = 3<br>catch attempts = 3 </p></div>
         </div>
       </div>
