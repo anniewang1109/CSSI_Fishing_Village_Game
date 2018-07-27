@@ -215,7 +215,6 @@ function refreshPage(){
   document.getElementById("scoreTag").innerHTML = "Score: " + score;
   document.getElementById("populationTag").innerHTML = "Village Population: " + population;
   document.getElementById("availableFishersTag").innerHTML = "Avaliable Fishers: " + availableFishers;
-  document.getElementById("currentLevel").innerHTML = "Level" + levelNum;
 }
 
 function levelComplete(){
@@ -256,6 +255,7 @@ document.addEventListener("mousedown", function(e){
     if((localX > 40 && localX < 215) && (localY > 835 && localY < 890)){
       if(done == true){   //start level
           if (levelNum++ < 10) {
+              document.getElementById("currentLevel").innerHTML = "Level: " + (levelNum);
               done = false;
               createLevel();
               console.log("Level " + levelNum);
