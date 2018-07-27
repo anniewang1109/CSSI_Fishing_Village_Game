@@ -239,18 +239,20 @@ function levelComplete(){
 document.addEventListener("mousedown", function(e){
     localX = ((e.clientX - rect.left) * scaleX);
     localY = ((e.clientY - rect.top) * scaleY);
-    if((localX > 220 && localX < 260) && (localY > 745 && localY < 785)){
-        if(availableFishers > 0){
+    console.log(localX + " - " + localY);
+    if((localX > 230 && localX < 270) && (localY > 750 && localY < 800)){
+      console.log("grab fisher");
+        if(availableFishers > 0){ // fisherman
           newFisher = new Fisher(e.pageX,e.pageY);
           document.addEventListener("mousemove", drag);
           document.addEventListener("mouseup", mouseUp);
         }
     }
-    if((localX > 200 && localX < 290) && (localY > 835 && localY < 870)){
-        stopFishing = true;
+    if((localX > 265 && localX < 440) && (localY > 835 && localY < 890)){
+        stopFishing = true; //stop fishing
     }
-    if((localX > 35 && localX < 125) && (localY > 835 && localY < 870)){
-      if(done == true){
+    if((localX > 40 && localX < 215) && (localY > 835 && localY < 890)){
+      if(done == true){   //start level
           if (levelNum++ < 10) {
               done = false;
               createLevel();
@@ -277,11 +279,9 @@ function createLevel(){
       if(fishMade2 == 0){
         fishMade2 = "|";
       }
-      console.log(fishMade2);
       level += fishMade + fishMade2 + waitTime;
     }
     levels = levels + "_" + level;
-    console.log(level);
 }
 
 function updateSettings(){
